@@ -45,9 +45,9 @@ public class SeleniumTest {
 		driver.get(baseUrl + "index.xhtml");
 		esperar();
 		// Compruebo que existe el en el navbar la pestaña referendum.
-		assertFalse(driver.findElement(By.id("j_idt6")) == null);
+		assertFalse(driver.findElement(By.id("j_idt4")) == null);
 		// Hago click en el botón.
-		driver.findElement(By.id("j_idt6")).click();
+		driver.findElement(By.id("j_idt4")).click();
 		esperar();
 		// Compruebo que se ha producido la navegación correctamente.
 		assertTrue(textoPresentePagina(driver, "Opciones disponibles"));
@@ -63,7 +63,7 @@ public class SeleniumTest {
 		driver.get(baseUrl + "referendum.xhtml");
 		esperar();
 		// Compruebo que esto en la página que le indico.
-		assertTrue(textoPresentePagina(driver, "Resultados del Referendum"));
+		assertTrue(textoPresentePagina(driver, "Opciones del referendum"));
 		assertTrue(textoPresentePagina(driver, "Opciones disponibles"));
 	}
 

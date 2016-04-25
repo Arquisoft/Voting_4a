@@ -47,7 +47,7 @@ public class MainControllerTest {
 	@Test
 	public void testLanding() throws Exception {
 		mvc.perform(get("/index.xhtml")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Sistema de Conteo")));
+				.andExpect(content().string(containsString("Recuento y publicación de resultados")));
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class MainControllerTest {
 	@Test
 	public void testReferendum() throws Exception {
 		mvc.perform(get("/referendum.xhtml")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Resultados del Referendum")));
+				.andExpect(content().string(containsString("Opciones del referendum")));
 	}
 
 }
