@@ -14,6 +14,8 @@ Voting System
 
 [Project Site](http://arquisoft.github.io/VoteCounting_4a/)
 
+[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://vote-counting-4a.herokuapp.com)
+
 
 VoteCounting es un proyecto realizado como práctica de entrega para la asignatura Arquitectura del Software de la Universidad de Oviedo.
 
