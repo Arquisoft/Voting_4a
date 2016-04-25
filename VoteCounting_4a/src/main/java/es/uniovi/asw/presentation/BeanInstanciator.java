@@ -22,6 +22,7 @@ import es.uniovi.asw.model.Voto;
 import es.uniovi.asw.persistence.OpcionesService;
 import es.uniovi.asw.persistence.VotacionesService;
 import es.uniovi.asw.persistence.VotosService;
+import es.uniovi.asw.presentation.util.VotesUtil;
 
 @Component("instanciatorBean")
 @Scope("application")
@@ -39,9 +40,7 @@ public class BeanInstanciator implements Serializable {
 	private VotacionesService votacionesService;
 
 	private String pageView;
-
 	private VotacionManager VMaganer = VotacionManager.getVM();
-
 	private static final long TIEMPO_MS = 15000;
 
 	// Inyeccion de dependencia
@@ -113,15 +112,12 @@ public class BeanInstanciator implements Serializable {
 	private void calculoVotosPeriodicos() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see java.util.TimerTask#run()
-			 */
+			
 			@Override
 			public void run() {
 				List<Voto> votoscalculados = votosService.votosLeidos(false);
 				beanResults.getVotos().addAll(votesCalc.calcularResultados(votoscalculados));
+				beanResults.getVotosAgrupados().putAll(VotesUtil.groupByOption(votoscalculados));
 
 				for (Voto v : votoscalculados) {
 					v.setLeido(true);

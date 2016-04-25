@@ -2,12 +2,15 @@ package es.uniovi.asw.presentation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import es.uniovi.asw.instanciator.VotesShow;
+import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Voto;
 
 @Component("results")
@@ -20,6 +23,7 @@ public class BeanResults implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Voto> votosCalculados = new ArrayList<Voto>();
+	private Map<Opcion, List<Voto>> votosAgrupados = new HashMap<Opcion, List<Voto>>();
 	private VotesShow votesShow;
 
 	/**
@@ -58,6 +62,14 @@ public class BeanResults implements Serializable {
 	 */
 	public void setVotesShow(VotesShow votesShow) {
 		this.votesShow = votesShow;
+	}
+
+	public Map<Opcion, List<Voto>> getVotosAgrupados() {
+		return votosAgrupados;
+	}
+
+	public void setVotosAgrupados(Map<Opcion, List<Voto>> votosAgrupados) {
+		this.votosAgrupados = votosAgrupados;
 	}
 
 }
