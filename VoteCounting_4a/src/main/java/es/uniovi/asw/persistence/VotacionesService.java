@@ -10,6 +10,6 @@ public interface VotacionesService {
 	 * @param opcion
 	 * @return
 	 */
-	Votacion getActive(boolean opcion);
+	Votacion getVoteInfo(boolean opcion);
 
 }

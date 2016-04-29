@@ -23,12 +23,12 @@ public class VotosServiceImpl implements VotosService {
 	}
 
 	@Override
-	public void updateLeido(Voto v) {
+	public void updateVotes(Voto v) {
 		repo.save(v);
 	}
 
 	@Override
-	public List<Voto> votosLeidos(boolean leido) {
+	public List<Voto> getVotes(boolean leido) {
 		return repo.findByLeido(leido);
 	}
 

@@ -14,7 +14,7 @@ public class VotacionesServiceImpl implements VotacionesService {
 	private VotacionesRepository repo;
 
 	@Override
-	public Votacion getActive(boolean activa) {
+	public Votacion getVoteInfo(boolean activa) {
 		return repo.findByActiva(activa);
 	}
 

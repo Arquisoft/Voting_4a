@@ -21,7 +21,7 @@ public interface VotosService {
 	 * 
 	 * @param v
 	 */
-	void updateLeido(Voto v);
+	void updateVotes(Voto v);
 
 	/**
 	 * Metodo que devuelve todos los votos dado un colegio electoral, que aun no
@@ -30,6 +30,6 @@ public interface VotosService {
 	 * @param leido
 	 * @return
 	 */
-	List<Voto> votosLeidos(boolean leido);
+	List<Voto> getVotes(boolean leido);
 
 }

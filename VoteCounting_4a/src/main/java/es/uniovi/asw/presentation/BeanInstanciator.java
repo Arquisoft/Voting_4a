@@ -66,7 +66,7 @@ public class BeanInstanciator implements Serializable {
 	public void init() {
 		System.out.println("BeanInstanciator - INIT");
 
-		Votacion vot = votacionesService.getActive(true);
+		Votacion vot = votacionesService.getVoteInfo(true);
 		VotacionManager.getVM().setOpciones(opcionesService.getOpciones(vot));
 		VotacionManager.getVM().setVotacion(vot);
 
@@ -115,13 +115,13 @@ public class BeanInstanciator implements Serializable {
 			
 			@Override
 			public void run() {
-				List<Voto> votoscalculados = votosService.votosLeidos(false);
+				List<Voto> votoscalculados = votosService.getVotes(false);
 				beanResults.getVotos().addAll(votesCalc.calcularResultados(votoscalculados));
 				beanResults.getVotosAgrupados().putAll(VotesUtil.groupByOption(votoscalculados));
 
 				for (Voto v : votoscalculados) {
 					v.setLeido(true);
-					votosService.updateLeido(v);
+					votosService.updateVotes(v);
 				}
 			}
 		};
