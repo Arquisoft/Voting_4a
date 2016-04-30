@@ -1,4 +1,4 @@
-package asw.Model;
+package asw.model;
 
 public class EmailPassPassVoter {
 	

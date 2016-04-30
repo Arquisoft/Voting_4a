@@ -1,4 +1,4 @@
-package asw.Model;
+package asw.model;
 
 import asw.util.MD5;
 

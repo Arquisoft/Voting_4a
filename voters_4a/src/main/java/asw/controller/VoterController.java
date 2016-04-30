@@ -1,4 +1,4 @@
-package asw.Controller;
+package asw.controller;
 //modelo.attribute
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import asw.DBRepository.GetVoter;
 import asw.DBRepository.VoterRepository;
 import asw.DBRepository.Impl.GetVoterImpl;
-import asw.Model.EmailCodigoVoter;
-import asw.Model.EmailPassPassVoter;
-import asw.Model.EmailPassVoter;
-import asw.Model.Voter;
+import asw.model.EmailCodigoVoter;
+import asw.model.EmailPassPassVoter;
+import asw.model.EmailPassVoter;
+import asw.model.Voter;
 import asw.util.MD5;
 
 @Controller

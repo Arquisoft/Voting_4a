@@ -1,7 +1,13 @@
 package es.uniovi.asw.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+@Table (name="TVoter")
 @Entity
 public class Voter {
 
@@ -9,15 +15,20 @@ public class Voter {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@NotNull
 	private String name;
+	@NotNull
 	private String email;
+	@NotNull
 	private String nif;
-	private Integer code;
+	@NotNull
+	private Long code;
+	@NotNull
 	private String password;
 
 	protected Voter() {}
 
-	public Voter(String name, String email, String nif, Integer code, String password) {
+	public Voter(String name, String email, String nif, Long code, String password) {
 		this.name = name;
 		this.nif = nif;
 		this.code = code;
@@ -37,11 +48,11 @@ public class Voter {
 		this.name = name;
 	}
 
-	public Integer getCode() {
+	public Long getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
 
