@@ -1,5 +1,7 @@
 package asw.model;
 
+import java.security.NoSuchAlgorithmException;
+
 import asw.util.MD5;
 
 public class EmailPassVoter {
@@ -11,8 +13,9 @@ public class EmailPassVoter {
 	 * Constructor de la clase EmailPassVoter.
 	 * @param email, email de un votante.
 	 * @param password, contraseña de un votante.
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public EmailPassVoter(String email, String password) {
+	public EmailPassVoter(String email, String password) throws NoSuchAlgorithmException {
 		super();
 		this.email = email;
 		this.password = MD5.getMD5(password);
