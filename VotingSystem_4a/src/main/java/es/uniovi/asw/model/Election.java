@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Election
- * Created by ivan on 29/03/16.
+ * Election Created by ivan on 29/03/16.
  */
 @Entity
 public class Election implements Serializable {
@@ -35,13 +34,14 @@ public class Election implements Serializable {
 	@OneToMany(mappedBy = "election", cascade = { CascadeType.ALL })
 	private Set<Region> regions = new HashSet<>();
 
-	public Election() {}
+	public Election() {
+	}
 
 	public Election(String description, String name) {
 		this.description = description;
 		this.name = name;
 	}
-	
+
 	public Election(ElectionDateTime electionDateTime, String description, String name) {
 		this.electionDateTime = electionDateTime;
 		this.description = description;
@@ -102,12 +102,19 @@ public class Election implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Election)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Election))
+			return false;
 
 		Election election = (Election) o;
 
-		return getName() != null ? getName().equals(election.getName()) : election.getName() == null && (getDescription() != null ? getDescription().equals(election.getDescription()) : election.getDescription() == null && (getElectionDateTime() != null ? getElectionDateTime().equals(election.getElectionDateTime()) : election.getElectionDateTime() == null));
+		return getName() != null ? getName().equals(election.getName())
+				: election.getName() == null
+						&& (getDescription() != null ? getDescription().equals(election.getDescription())
+								: election.getDescription() == null && (getElectionDateTime() != null
+										? getElectionDateTime().equals(election.getElectionDateTime())
+										: election.getElectionDateTime() == null));
 
 	}
 
@@ -121,12 +128,7 @@ public class Election implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Election{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", description='" + description + '\'' +
-				", electionDateTime=" + electionDateTime +
-				", electionCall=" + electionCall +
-				'}';
+		return "Election{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\''
+				+ ", electionDateTime=" + electionDateTime + ", electionCall=" + electionCall + '}';
 	}
 }

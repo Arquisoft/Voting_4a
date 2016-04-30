@@ -3,8 +3,7 @@ package es.uniovi.asw.model;
 import javax.persistence.*;
 
 /**
- * Candidate
- * Created by ivan on 29/03/16.
+ * Candidate Created by ivan on 29/03/16.
  */
 @Entity
 @DiscriminatorValue("Candidate")
@@ -17,7 +16,8 @@ public class Candidate extends Candidature {
 	@ManyToOne
 	private CandidatureList candidatureList;
 
-	public Candidate() {}
+	public Candidate() {
+	}
 
 	public Candidate(String name) {
 		this.name = name;
@@ -41,8 +41,10 @@ public class Candidate extends Candidature {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Candidate)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Candidate))
+			return false;
 
 		Candidate candidate = (Candidate) o;
 
@@ -57,9 +59,6 @@ public class Candidate extends Candidature {
 
 	@Override
 	public String toString() {
-		return "Candidate{" +
-				"name='" + name + '\'' +
-				", candidatureList=" + candidatureList +
-				'}';
+		return "Candidate{" + "name='" + name + '\'' + ", candidatureList=" + candidatureList + '}';
 	}
 }

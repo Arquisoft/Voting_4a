@@ -4,8 +4,7 @@ import es.uniovi.asw.model.*;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * GetParameters
- * Created by ivan on 2/04/16.
+ * GetParameters Created by ivan on 2/04/16.
  */
 public interface GetParameters {
 

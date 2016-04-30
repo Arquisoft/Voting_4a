@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * ElectionCall
- * Created by ivan on 29/03/16.
+ * ElectionCall Created by ivan on 29/03/16.
  */
 @Entity
 public class ElectionCall implements Serializable {
@@ -27,7 +26,8 @@ public class ElectionCall implements Serializable {
 	@OneToMany(mappedBy = "electionCall", cascade = { CascadeType.ALL })
 	private Set<Election> elections = new HashSet<>();
 
-	public ElectionCall() {}
+	public ElectionCall() {
+	}
 
 	public ElectionCall(String name, String description) {
 		this.name = name;
@@ -72,12 +72,16 @@ public class ElectionCall implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof ElectionCall)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof ElectionCall))
+			return false;
 
 		ElectionCall that = (ElectionCall) o;
 
-		return getName() != null ? getName().equals(that.getName()) : that.getName() == null && (getDescription() != null ? getDescription().equals(that.getDescription()) : that.getDescription() == null);
+		return getName() != null ? getName().equals(that.getName())
+				: that.getName() == null && (getDescription() != null ? getDescription().equals(that.getDescription())
+						: that.getDescription() == null);
 
 	}
 
@@ -90,10 +94,6 @@ public class ElectionCall implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ElectionCall{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", description='" + description + '\'' +
-				'}';
+		return "ElectionCall{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
 	}
 }

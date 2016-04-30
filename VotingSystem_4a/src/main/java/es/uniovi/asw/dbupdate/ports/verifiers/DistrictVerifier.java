@@ -4,8 +4,7 @@ import es.uniovi.asw.model.District;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * DistrictVerifier
- * Created by ivan on 15/04/16.
+ * DistrictVerifier Created by ivan on 15/04/16.
  */
 public class DistrictVerifier {
 

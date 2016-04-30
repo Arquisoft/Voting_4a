@@ -3,8 +3,7 @@ package es.uniovi.asw.dbupdate.ports.verifiers;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * VoteVerifier
- * Created by ivan on 19/04/16.
+ * VoteVerifier Created by ivan on 19/04/16.
  */
 public class VoteVerifier {
 

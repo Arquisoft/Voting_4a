@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Candidature
- * Created by ivan on 29/03/16.
+ * Candidature Created by ivan on 29/03/16.
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,7 +24,8 @@ public abstract class Candidature implements Serializable {
 	@OneToMany(mappedBy = "candidature", cascade = { CascadeType.ALL })
 	private Set<Vote> votes = new HashSet<>();
 
-	public Candidature() {}
+	public Candidature() {
+	}
 
 	public void addVote(Vote vote) {
 		if (votes.add(vote)) {
@@ -57,9 +57,6 @@ public abstract class Candidature implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Candidature{" +
-				"id=" + id +
-				", district=" + district +
-				'}';
+		return "Candidature{" + "id=" + id + ", district=" + district + '}';
 	}
 }

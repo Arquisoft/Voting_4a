@@ -4,8 +4,7 @@ import es.uniovi.asw.model.Region;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * RegionVerifier
- * Created by ivan on 15/04/16.
+ * RegionVerifier Created by ivan on 15/04/16.
  */
 public class RegionVerifier {
 

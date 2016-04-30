@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * GetParametersP
- * Created by ivan on 2/04/16.
+ * GetParametersP Created by ivan on 2/04/16.
  */
 @Service
 public class GetParametersP implements GetParameters {
@@ -35,7 +34,6 @@ public class GetParametersP implements GetParameters {
 
 	@Autowired
 	private VotingPlaceRepository placeRepository;
-
 
 	@Override
 	public Iterable<ElectionCall> getElectionCalls() throws ParametersException {

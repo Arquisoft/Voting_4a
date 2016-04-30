@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Vote
- * Created by ivan on 29/03/16.
+ * Vote Created by ivan on 29/03/16.
  */
 @Entity
 @IdClass(VoteKey.class)
@@ -24,12 +23,13 @@ public class Vote implements Serializable {
 
 	@ManyToOne
 	private Candidature candidature;
-	
+
 	private boolean option;
 
-	public Vote() {}
-	
-	public Vote(boolean option){
+	public Vote() {
+	}
+
+	public Vote(boolean option) {
 		this.option = option;
 	}
 
@@ -65,11 +65,7 @@ public class Vote implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vote{" +
-				"id=" + id +
-				", votingPlace=" + votingPlace +
-				", candidature=" + candidature +
-				'}';
+		return "Vote{" + "id=" + id + ", votingPlace=" + votingPlace + ", candidature=" + candidature + '}';
 	}
 
 	public boolean getOption() {

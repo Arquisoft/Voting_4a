@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * GetVoterP
- * Created by ivan on 2/04/16.
+ * GetVoterP Created by ivan on 2/04/16.
  */
 @Service
 public class GetVoterP implements GetVoter {

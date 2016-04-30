@@ -5,8 +5,7 @@ import javax.persistence.Embeddable;
 import java.sql.Time;
 
 /**
- * ElectionDateTime
- * Created by ivan on 31/03/16.
+ * ElectionDateTime Created by ivan on 31/03/16.
  */
 @Embeddable
 public class ElectionDateTime {
@@ -17,7 +16,8 @@ public class ElectionDateTime {
 	@Column(nullable = false)
 	private Time endTime;
 
-	public ElectionDateTime() {}
+	public ElectionDateTime() {
+	}
 
 	public ElectionDateTime(Time startTime, Time endTime) {
 		this.startTime = startTime;
@@ -42,12 +42,16 @@ public class ElectionDateTime {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof ElectionDateTime)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof ElectionDateTime))
+			return false;
 
 		ElectionDateTime that = (ElectionDateTime) o;
 
-		return getStartTime() != null ? getStartTime().equals(that.getStartTime()) : that.getStartTime() == null && (getEndTime() != null ? getEndTime().equals(that.getEndTime()) : that.getEndTime() == null);
+		return getStartTime() != null ? getStartTime().equals(that.getStartTime())
+				: that.getStartTime() == null
+						&& (getEndTime() != null ? getEndTime().equals(that.getEndTime()) : that.getEndTime() == null);
 
 	}
 
@@ -60,9 +64,6 @@ public class ElectionDateTime {
 
 	@Override
 	public String toString() {
-		return "ElectionDateTime{" +
-				"startTime=" + startTime +
-				", endTime=" + endTime +
-				'}';
+		return "ElectionDateTime{" + "startTime=" + startTime + ", endTime=" + endTime + '}';
 	}
 }

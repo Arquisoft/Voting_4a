@@ -8,7 +8,8 @@ public class ParametersException extends Exception {
 
 	private static final long serialVersionUID = -408694249125638961L;
 
-	public ParametersException() {}
+	public ParametersException() {
+	}
 
 	public ParametersException(String message) {
 		super(message);

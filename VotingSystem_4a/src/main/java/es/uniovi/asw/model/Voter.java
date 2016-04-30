@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Voter
- * Created by ivan on 29/03/16.
+ * Voter Created by ivan on 29/03/16.
  */
 @Entity
 public class Voter implements Serializable {
@@ -34,10 +33,10 @@ public class Voter implements Serializable {
 	@ManyToOne
 	private VotingPlace votingPlace;
 
-	public Voter() {}
+	public Voter() {
+	}
 
-	public Voter(String name, String email, String nif, Long code, String password)
-	{
+	public Voter(String name, String email, String nif, Long code, String password) {
 		this.name = name;
 		this.nif = nif;
 		this.code = code;
@@ -107,12 +106,17 @@ public class Voter implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Voter)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Voter))
+			return false;
 
 		Voter voter = (Voter) o;
 
-		return getName() != null ? getName().equals(voter.getName()) : voter.getName() == null && (getEmail() != null ? getEmail().equals(voter.getEmail()) : voter.getEmail() == null && (getNif() != null ? getNif().equals(voter.getNif()) : voter.getNif() == null));
+		return getName() != null ? getName().equals(voter.getName())
+				: voter.getName() == null && (getEmail() != null ? getEmail().equals(voter.getEmail())
+						: voter.getEmail() == null
+								&& (getNif() != null ? getNif().equals(voter.getNif()) : voter.getNif() == null));
 
 	}
 
@@ -126,15 +130,8 @@ public class Voter implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Voter{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", email='" + email + '\'' +
-				", nif='" + nif + '\'' +
-				", code=" + code +
-				", password='" + password + '\'' +
-				", voted=" + voted +
-				", votingPlace=" + votingPlace +
-				'}';
+		return "Voter{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", nif='" + nif + '\''
+				+ ", code=" + code + ", password='" + password + '\'' + ", voted=" + voted + ", votingPlace="
+				+ votingPlace + '}';
 	}
 }

@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * District
- * Created by ivan on 29/03/16.
+ * District Created by ivan on 29/03/16.
  */
 @Entity
 public class District implements Serializable {
@@ -30,7 +29,8 @@ public class District implements Serializable {
 	@OneToMany(mappedBy = "district", cascade = { CascadeType.ALL })
 	private Set<Candidature> candidatures = new HashSet<>();
 
-	public District() {}
+	public District() {
+	}
 
 	public District(String name) {
 		this.name = name;
@@ -90,8 +90,10 @@ public class District implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof District)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof District))
+			return false;
 
 		District district = (District) o;
 
@@ -106,10 +108,6 @@ public class District implements Serializable {
 
 	@Override
 	public String toString() {
-		return "District{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", region=" + region +
-				'}';
+		return "District{" + "id=" + id + ", name='" + name + '\'' + ", region=" + region + '}';
 	}
 }

@@ -4,8 +4,7 @@ import es.uniovi.asw.model.VotingPlace;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * VotingPlaceVerifier
- * Created by ivan on 15/04/16.
+ * VotingPlaceVerifier Created by ivan on 15/04/16.
  */
 public class VotingPlaceVerifier {
 

@@ -4,8 +4,7 @@ import es.uniovi.asw.model.Voter;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * VoterVerifier
- * Created by ivan on 8/04/16.
+ * VoterVerifier Created by ivan on 8/04/16.
  */
 public class VoterVerifier {
 

@@ -5,8 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
- * ReferendumOption
- * Created by ivan on 2/04/16.
+ * ReferendumOption Created by ivan on 2/04/16.
  */
 @Entity
 @DiscriminatorValue("ReferendumOption")
@@ -17,7 +16,8 @@ public class ReferendumOption extends Candidature {
 	@Column(nullable = false)
 	private String option;
 
-	public ReferendumOption() {}
+	public ReferendumOption() {
+	}
 
 	public ReferendumOption(String option) {
 		this.option = option;
@@ -33,8 +33,10 @@ public class ReferendumOption extends Candidature {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof ReferendumOption)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof ReferendumOption))
+			return false;
 
 		ReferendumOption that = (ReferendumOption) o;
 
@@ -49,8 +51,6 @@ public class ReferendumOption extends Candidature {
 
 	@Override
 	public String toString() {
-		return "ReferendumOption{" +
-				"option='" + option + '\'' +
-				'}';
+		return "ReferendumOption{" + "option='" + option + '\'' + '}';
 	}
 }

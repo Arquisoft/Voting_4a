@@ -4,8 +4,7 @@ import es.uniovi.asw.model.Candidature;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * CandidatureVerifier
- * Created by ivan on 17/04/16.
+ * CandidatureVerifier Created by ivan on 17/04/16.
  */
 public class CandidatureVerifier {
 

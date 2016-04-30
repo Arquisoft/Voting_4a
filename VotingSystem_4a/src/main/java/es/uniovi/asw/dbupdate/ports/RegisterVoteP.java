@@ -18,8 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * RegisterVoteP
- * Created by ivan on 2/04/16.
+ * RegisterVoteP Created by ivan on 2/04/16.
  */
 @Service
 public class RegisterVoteP implements RegisterVote {

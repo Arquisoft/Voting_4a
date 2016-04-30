@@ -8,7 +8,8 @@ public class VoterException extends Exception {
 
 	private static final long serialVersionUID = -408694249125638961L;
 
-	public VoterException() {}
+	public VoterException() {
+	}
 
 	public VoterException(String message) {
 		super(message);

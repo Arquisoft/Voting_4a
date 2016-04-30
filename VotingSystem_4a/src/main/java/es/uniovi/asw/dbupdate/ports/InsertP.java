@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * InsertP
- * Created by ivan on 2/04/16.
+ * InsertP Created by ivan on 2/04/16.
  */
 @Service
 public class InsertP implements Insert {
@@ -35,7 +34,6 @@ public class InsertP implements Insert {
 
 	@Autowired
 	private VoterRepository voterRepository;
-
 
 	@Override
 	public ElectionCall insertElectionCall(ElectionCall electionCall) throws ParametersException {
@@ -92,7 +90,8 @@ public class InsertP implements Insert {
 	}
 
 	@Override
-	public ReferendumOption insertReferendumOption(Long idDistrict, ReferendumOption referendumOption) throws ParametersException {
+	public ReferendumOption insertReferendumOption(Long idDistrict, ReferendumOption referendumOption)
+			throws ParametersException {
 
 		if (idDistrict == null) {
 			throw new ParametersException("El id de circunscripción es nulo");

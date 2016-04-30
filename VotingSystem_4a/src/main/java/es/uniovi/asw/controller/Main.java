@@ -42,8 +42,8 @@ public class Main {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam(value="email") String email,
-	                          @RequestParam(value="password") String password, Model model) {
+	public ModelAndView login(@RequestParam(value = "email") String email,
+			@RequestParam(value = "password") String password, Model model) {
 		logger.info("Login");
 
 		try {

@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Region
- * Created by ivan on 29/03/16.
+ * Region Created by ivan on 29/03/16.
  */
 @Entity
 public class Region implements Serializable {
@@ -27,7 +26,8 @@ public class Region implements Serializable {
 	@OneToMany(mappedBy = "region", cascade = { CascadeType.ALL })
 	private Set<District> districts = new HashSet<>();
 
-	public Region() {}
+	public Region() {
+	}
 
 	public Region(String name) {
 		this.name = name;
@@ -71,8 +71,10 @@ public class Region implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Region)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Region))
+			return false;
 
 		Region region = (Region) o;
 
@@ -87,10 +89,6 @@ public class Region implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Region{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", election=" + election +
-				'}';
+		return "Region{" + "id=" + id + ", name='" + name + '\'' + ", election=" + election + '}';
 	}
 }

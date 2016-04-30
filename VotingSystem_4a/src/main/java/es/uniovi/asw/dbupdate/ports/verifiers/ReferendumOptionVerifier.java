@@ -4,8 +4,7 @@ import es.uniovi.asw.model.ReferendumOption;
 import es.uniovi.asw.util.ParametersException;
 
 /**
- * ReferendumOptionVerifier
- * Created by ivan on 15/04/16.
+ * ReferendumOptionVerifier Created by ivan on 15/04/16.
  */
 public class ReferendumOptionVerifier {
 

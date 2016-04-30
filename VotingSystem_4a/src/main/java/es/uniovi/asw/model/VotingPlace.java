@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * VotingPlace
- * Created by ivan on 29/03/16.
+ * VotingPlace Created by ivan on 29/03/16.
  */
 @Entity
 public class VotingPlace implements Serializable {
@@ -30,7 +29,8 @@ public class VotingPlace implements Serializable {
 	@OneToMany(mappedBy = "votingPlace", cascade = { CascadeType.ALL })
 	private Set<Vote> votes = new HashSet<>();
 
-	public VotingPlace() {}
+	public VotingPlace() {
+	}
 
 	public VotingPlace(String name) {
 		this.name = name;
@@ -90,8 +90,10 @@ public class VotingPlace implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof VotingPlace)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof VotingPlace))
+			return false;
 
 		VotingPlace that = (VotingPlace) o;
 
@@ -106,10 +108,6 @@ public class VotingPlace implements Serializable {
 
 	@Override
 	public String toString() {
-		return "VotingPlace{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", district=" + district +
-				'}';
+		return "VotingPlace{" + "id=" + id + ", name='" + name + '\'' + ", district=" + district + '}';
 	}
 }
