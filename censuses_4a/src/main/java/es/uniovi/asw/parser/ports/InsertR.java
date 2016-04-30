@@ -48,7 +48,7 @@ public class InsertR {
 			throw new ReadCensusException("[ERROR] [" + voter.get("file") + ":" + voter.get("line") + "] El colegio electoral del usuario " + voter.get("nif") + " no es válido");
 		}
 
-		return new Voter(voter.get("name").toString(), voter.get("email").toString(), voter.get("nif").toString(), Integer.parseInt(voter.get("code").toString()), MD5.getMD5(voter.get("password").toString()));
+		return new Voter(voter.get("name").toString(), voter.get("email").toString(), voter.get("nif").toString(), Long.parseLong(voter.get("code").toString()), MD5.getMD5(voter.get("password").toString()));
 		
 	}
 

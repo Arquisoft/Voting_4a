@@ -1,4 +1,6 @@
-package asw.Controller;
+package asw.controller;
+import java.security.NoSuchAlgorithmException;
+
 //modelo.attribute
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import asw.DBRepository.GetVoter;
 import asw.DBRepository.VoterRepository;
 import asw.DBRepository.Impl.GetVoterImpl;
-import asw.Model.EmailCodigoVoter;
-import asw.Model.EmailPassPassVoter;
-import asw.Model.EmailPassVoter;
-import asw.Model.Voter;
+import asw.model.EmailCodigoVoter;
+import asw.model.EmailPassPassVoter;
+import asw.model.EmailPassVoter;
+import asw.model.Voter;
 import asw.util.MD5;
 
 @Controller
@@ -35,7 +37,7 @@ public class VoterController {
 
     @RequestMapping(value="/cambiarPass", method=RequestMethod.POST)
     public String cambiarPassSubmit(@ModelAttribute EmailPassPassVoter voterdto, 
-    		Model model) {
+    		Model model) throws NoSuchAlgorithmException {
 
 		model.addAttribute("voterdto", voterdto);
 		
@@ -53,7 +55,7 @@ public class VoterController {
     
     @RequestMapping(value="/", method=RequestMethod.POST)
     public String votarFormSubmit(@ModelAttribute EmailPassVoter voterdto, 
-    		Model model) {
+    		Model model) throws NoSuchAlgorithmException {
 
     	Voter tmps = votar(voterdto);
     	if (tmps != null) {
@@ -72,7 +74,7 @@ public class VoterController {
     @RequestMapping(value="/user", method=RequestMethod.POST)
     @ResponseBody
     private ResponseEntity<EmailCodigoVoter> findUserPasswordEmail(
-    		@RequestBody EmailPassVoter voterdto) {
+    		@RequestBody EmailPassVoter voterdto) throws NoSuchAlgorithmException {
     	
     	Voter tmps = votar(voterdto);
     	if (tmps != null) {
@@ -88,7 +90,7 @@ public class VoterController {
     @RequestMapping(value="/password", method=RequestMethod.POST)
     @ResponseBody
     private ResponseEntity<EmailPassVoter> changeUserPassword(
-    		@RequestBody EmailPassPassVoter voterdto) {   	
+    		@RequestBody EmailPassPassVoter voterdto) throws NoSuchAlgorithmException {   	
     	
     	if (cambiarPassword(voterdto) == true)
     		return new ResponseEntity<EmailPassVoter>(new EmailPassVoter(
@@ -98,13 +100,13 @@ public class VoterController {
     		return new ResponseEntity<EmailPassVoter>(HttpStatus.BAD_REQUEST);
     }
     
-    private Voter votar(EmailPassVoter voterdto) {
+    private Voter votar(EmailPassVoter voterdto) throws NoSuchAlgorithmException {
     	GetVoter voterAccess = new GetVoterImpl();
     	return voterAccess.findVoter(voterRepo, voterdto.getEmail(),
     			MD5.getMD5(voterdto.getPassword()));
     }
     
-    private boolean cambiarPassword(EmailPassPassVoter voterdto) {
+    private boolean cambiarPassword(EmailPassPassVoter voterdto) throws NoSuchAlgorithmException {
     	GetVoter voterAccess = new GetVoterImpl();
     	return voterAccess.ChangePasswordVoter(voterRepo, voterdto.getEmail(),
     			MD5.getMD5(voterdto.getOldPassword()), MD5.getMD5(voterdto.getNewPassword()));

@@ -1,12 +1,17 @@
-package asw.Model;
+package asw.model;
 
+import java.security.NoSuchAlgorithmException;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import asw.util.MD5;
-
+//Voters
+@Table (name="TVoter")
 @Entity
 public class Voter {
 
@@ -14,14 +19,19 @@ public class Voter {
 	private long id;
 	
 	@NotNull
+	@Column (name="name")
 	private String nombre;
 	@NotNull
+	@Column (name="password")
 	private String password;
 	@NotNull
+	@Column (name="nif")
 	private String dni;
 	@NotNull
+	@Column (name="email")
 	private String email;
-	
+
+	@Column (name="code")
 	private long colegioelectoral;
 	
 	/**
@@ -35,8 +45,9 @@ public class Voter {
 	 * @param email, email del votante.
 	 * @param password, contraseña del votante.
 	 * @param dni, documento de identificación del votante.
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public Voter(String nombre, String email, String password, String dni) {
+	public Voter(String nombre, String email, String password, String dni) throws NoSuchAlgorithmException {
 		super();
 		this.email = email;
 		this.nombre = nombre;

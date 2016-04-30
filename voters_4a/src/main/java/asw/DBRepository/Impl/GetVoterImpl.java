@@ -2,7 +2,7 @@ package asw.DBRepository.Impl;
 
 import asw.DBRepository.GetVoter;
 import asw.DBRepository.VoterRepository;
-import asw.Model.Voter;
+import asw.model.Voter;
 
 public class GetVoterImpl implements GetVoter {
 	

@@ -1,6 +1,6 @@
 package asw.DBRepository;
 
-import asw.Model.Voter;
+import asw.model.Voter;
 
 public interface GetVoter {
 
