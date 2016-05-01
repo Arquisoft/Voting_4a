@@ -5,6 +5,7 @@ import es.uniovi.asw.dbupdate.ports.GetParametersP;
 import es.uniovi.asw.dbupdate.ports.GetVoterP;
 import es.uniovi.asw.dbupdate.ports.InsertP;
 import es.uniovi.asw.dbupdate.ports.RegisterVoteP;
+import es.uniovi.asw.dbupdate.repositories.VoterRepository;
 import es.uniovi.asw.model.*;
 import es.uniovi.asw.model.types.ElectionDateTime;
 import org.junit.Before;
@@ -40,6 +41,9 @@ public class DBUpdateTest {
 
 	@Autowired
 	private GetParametersP getParametersP;
+	
+	@Autowired
+	private VoterRepository voterRepo;
 
 	private ElectionCall electionCall;
 	private Election election;
@@ -182,7 +186,7 @@ public class DBUpdateTest {
 	public void getVoter() throws Exception {
 		insertVoter();
 
-		voter = getVoterP.getVoter(voter.getId());
+		voter = getVoterP.getVoter(voterRepo,voter.getId());
 		assertNotNull(voter);
 	}
 
@@ -190,7 +194,7 @@ public class DBUpdateTest {
 	public void registerVoter() throws Exception {
 		insertVoter();
 
-		voter = getVoterP.getVoter(voter.getId());
+		voter = getVoterP.getVoter(voterRepo,voter.getId());
 		assertNotNull(voter);
 
 		assertFalse(voter.hasVoted());

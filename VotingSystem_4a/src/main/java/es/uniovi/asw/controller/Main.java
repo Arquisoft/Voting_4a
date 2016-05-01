@@ -1,6 +1,7 @@
 package es.uniovi.asw.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import es.uniovi.asw.dbupdate.ports.GetParametersP;
 import es.uniovi.asw.util.Login;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.uniovi.asw.dbupdate.repositories.ElectionRepository;
+import es.uniovi.asw.dbupdate.repositories.VoterRepository;
 import es.uniovi.asw.model.Candidature;
 import es.uniovi.asw.model.District;
 import es.uniovi.asw.model.Region;
@@ -30,6 +32,9 @@ public class Main {
 
 	@Autowired
 	private GetParametersP getParametersP;
+	
+	@Autowired
+	private VoterRepository voter;
 
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -47,9 +52,8 @@ public class Main {
 		logger.info("Login");
 
 		try {
-
 			Login login = new Login();
-			Object loginData = login.auth(email, password);
+			Object loginData = login.auth(voter,email, password);
 
 			if (loginData == null) {
 				logger.info("User/pass incorrect");
