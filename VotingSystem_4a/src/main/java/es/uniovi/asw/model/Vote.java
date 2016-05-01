@@ -1,15 +1,16 @@
 package es.uniovi.asw.model;
 
-import es.uniovi.asw.model.types.VoteKey;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Vote Created by ivan on 29/03/16.
  */
 @Entity
-@IdClass(VoteKey.class)
 public class Vote implements Serializable {
 
 	private static final long serialVersionUID = -5096934069175328173L;
