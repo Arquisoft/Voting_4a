@@ -1,4 +1,4 @@
-package asw.controller;
+package asw.Controller;
 import java.security.NoSuchAlgorithmException;
 
 //modelo.attribute
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import asw.DBRepository.GetVoter;
 import asw.DBRepository.VoterRepository;
 import asw.DBRepository.Impl.GetVoterImpl;
-import asw.model.EmailCodigoVoter;
-import asw.model.EmailPassPassVoter;
-import asw.model.EmailPassVoter;
-import asw.model.Voter;
+import asw.Model.EmailCodigoVoter;
+import asw.Model.EmailPassPassVoter;
+import asw.Model.EmailPassVoter;
+import asw.Model.Voter;
 import asw.util.MD5;
 
 @Controller
