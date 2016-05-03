@@ -1,6 +1,6 @@
 package es.uniovi.asw.util;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import org.slf4j.Logger;
@@ -15,7 +15,6 @@ import es.uniovi.asw.dbupdate.repositories.DistrictRepository;
 import es.uniovi.asw.dbupdate.repositories.ElectionCallRepository;
 import es.uniovi.asw.dbupdate.repositories.ElectionRepository;
 import es.uniovi.asw.dbupdate.repositories.RegionRepository;
-import es.uniovi.asw.dbupdate.repositories.VoteRepository;
 import es.uniovi.asw.dbupdate.repositories.VoterRepository;
 import es.uniovi.asw.dbupdate.repositories.VotingPlaceRepository;
 import es.uniovi.asw.model.District;
@@ -55,10 +54,6 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private VoterRepository voterRepository;
 
-	@SuppressWarnings("unused")
-	@Autowired
-	private VoteRepository voteRepository;
-
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 
@@ -78,8 +73,8 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 		ElectionDateTime electionDateTime = new ElectionDateTime();
 		Calendar calendar = Calendar.getInstance();
 
-		Time start = new Time(calendar.getTimeInMillis());
-		Time end = new Time(calendar.getTimeInMillis() + 1000000);
+		Timestamp start = new Timestamp(calendar.getTimeInMillis());
+		Timestamp end = new Timestamp(calendar.getTimeInMillis() + 1000000);
 
 		electionDateTime.setStartTime(start);
 		electionDateTime.setEndTime(end);
@@ -117,11 +112,11 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		VotingPlace votingPlace = new VotingPlace();
 		votingPlace.setName("Colegio La Ería");
-
-		district.addVotingPlace(votingPlace);
+		votingPlace.setIdVotingPlace(1L);
 		placeRepository.save(votingPlace);
 
 		Voter ivan = new Voter("Iván", "ivan@eii.es", "11111111A", 1L, "ivan");
+		ivan.setVoted(true);
 		voterRepository.save(ivan);
 
 		Voter ricardo = new Voter("Ricardo", "ricardo@eii.es", "22222222A", 2L, "ricardo");
