@@ -1,11 +1,9 @@
 package es.uniovi.asw;
 
-import es.uniovi.asw.Application;
 import es.uniovi.asw.dbupdate.ports.GetParametersP;
 import es.uniovi.asw.dbupdate.ports.GetVoterP;
 import es.uniovi.asw.dbupdate.ports.InsertP;
 import es.uniovi.asw.dbupdate.ports.RegisterVoteP;
-import es.uniovi.asw.dbupdate.repositories.VoterRepository;
 import es.uniovi.asw.model.*;
 import es.uniovi.asw.model.types.ElectionDateTime;
 import org.junit.Before;
@@ -16,8 +14,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -41,9 +42,6 @@ public class DBUpdateTest {
 
 	@Autowired
 	private GetParametersP getParametersP;
-	
-	@Autowired
-	private VoterRepository voterRepo;
 
 	private ElectionCall electionCall;
 	private Election election;
@@ -79,10 +77,20 @@ public class DBUpdateTest {
 		assertNull(election.getId());
 
 		ElectionDateTime electionDateTime = new ElectionDateTime();
-		Calendar calendar = Calendar.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy H:m");
 
-		Time start = new Time(calendar.getTimeInMillis());
-		Time end = new Time(calendar.getTimeInMillis() + 1000000);
+		Date startDate = null;
+		Date endDate = null;
+
+		try {
+			startDate = dateFormat.parse("03/05/2016 10:00");
+			endDate = dateFormat.parse("03/05/2016 20:30");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Timestamp start = new Timestamp(startDate.getTime());
+		Timestamp end = new Timestamp(endDate.getTime());
 
 		electionDateTime.setStartTime(start);
 		electionDateTime.setEndTime(end);
@@ -145,9 +153,9 @@ public class DBUpdateTest {
 		votingPlace = new VotingPlace();
 
 		votingPlace.setName("Colegio La Ería");
-		insertP.insertVotingPlace(district.getId(), votingPlace);
+		votingPlace.setIdVotingPlace(1L);
+		insertP.insertVotingPlace(votingPlace);
 
-		assertTrue(district.getVotingPlaces().size() > 0);
 		assertTrue(votingPlace.getId() > 0);
 	}
 
@@ -186,7 +194,7 @@ public class DBUpdateTest {
 	public void getVoter() throws Exception {
 		insertVoter();
 
-		voter = getVoterP.getVoter(voterRepo,voter.getId());
+		voter = getVoterP.getVoter(voter.getId());
 		assertNotNull(voter);
 	}
 
@@ -194,11 +202,11 @@ public class DBUpdateTest {
 	public void registerVoter() throws Exception {
 		insertVoter();
 
-		voter = getVoterP.getVoter(voterRepo,voter.getId());
+		voter = getVoterP.getVoter(voter.getId());
 		assertNotNull(voter);
 
 		assertFalse(voter.hasVoted());
-		voter = registerVoteP.registerVoter(voter.getNif());
+		voter = registerVoteP.registerVoter(voter.getId());
 		assertTrue(voter.hasVoted());
 	}
 
@@ -234,7 +242,7 @@ public class DBUpdateTest {
 	@Test
 	public void getVotingPlaces() throws Exception {
 		insertVotingPlace();
-		assertNotNull(getParametersP.getVotingPlaces(district.getId()));
+		assertNotNull(getParametersP.getVotingPlaces());
 	}
 
 }

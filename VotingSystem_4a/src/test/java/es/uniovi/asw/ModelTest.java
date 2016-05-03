@@ -49,7 +49,7 @@ public class ModelTest {
 
 	@Test
 	public void testVotingPlace() {
-		VotingPlace vp = new VotingPlace("Colegio 1");
+		VotingPlace vp = new VotingPlace("Colegio 1", 1L);
 		vp.addVote(new Vote(true));
 		vp.addVote(new Vote(false));
 		vp.addVote(new Vote(true));
