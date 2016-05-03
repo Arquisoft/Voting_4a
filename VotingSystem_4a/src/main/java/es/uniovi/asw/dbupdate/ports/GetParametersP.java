@@ -12,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * GetParametersP Created by ivan on 2/04/16.
+ * GetParametersP
+ * Created by ivan on 2/04/16.
  */
 @Service
 public class GetParametersP implements GetParameters {
@@ -38,6 +39,20 @@ public class GetParametersP implements GetParameters {
 	@Override
 	public Iterable<ElectionCall> getElectionCalls() throws ParametersException {
 		return electionCallRepository.findAll();
+	}
+
+	@Override
+	public ElectionCall getElectionCall(Long idElectionCall) throws ParametersException {
+
+		if (idElectionCall == null) {
+			throw new ParametersException("El id de la convocatoria electoral es nulo");
+		}
+
+		ElectionCall electionCall = electionCallRepository.findOne(idElectionCall);
+		ElectionCallVerifier.verify(electionCall);
+
+		return electionCall;
+
 	}
 
 	@Override
@@ -95,15 +110,7 @@ public class GetParametersP implements GetParameters {
 	}
 
 	@Override
-	public Iterable<VotingPlace> getVotingPlaces(Long idDistrict) throws ParametersException {
-
-		if (idDistrict == null) {
-			throw new ParametersException("El id de circunscripción es nulo");
-		}
-
-		District district = districtRepository.findOne(idDistrict);
-		DistrictVerifier.verify(district);
-
-		return placeRepository.findByDistrict(district);
+	public Iterable<VotingPlace> getVotingPlaces() {
+		return placeRepository.findAll();
 	}
 }

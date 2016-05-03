@@ -19,7 +19,7 @@ public interface Insert {
 	ReferendumOption insertReferendumOption(Long idDistrict, ReferendumOption referendumOption)
 			throws ParametersException;
 
-	VotingPlace insertVotingPlace(Long idDistrict, VotingPlace votingPlace) throws ParametersException;
+	VotingPlace insertVotingPlace(VotingPlace votingPlace) throws ParametersException;
 
 	Voter insertVoter(Long idVotingPlace, Voter voter) throws ParametersException;
 

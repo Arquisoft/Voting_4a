@@ -11,6 +11,6 @@ public interface RegisterVote {
 
 	Vote insertVote(Long idCandidature, Long idVotingPlace) throws ParametersException;
 
-	Voter registerVoter(String nif) throws ParametersException;
+	Voter registerVoter(Long id) throws ParametersException;
 
 }

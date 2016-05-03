@@ -107,18 +107,8 @@ public class InsertP implements Insert {
 	}
 
 	@Override
-	public VotingPlace insertVotingPlace(Long idDistrict, VotingPlace votingPlace) throws ParametersException {
-
-		if (idDistrict == null) {
-			throw new ParametersException("El id de circunscripción es nulo");
-		}
-
+	public VotingPlace insertVotingPlace(VotingPlace votingPlace) throws ParametersException {
 		VotingPlaceVerifier.verify(votingPlace);
-
-		District district = districtRepository.findOne(idDistrict);
-		DistrictVerifier.verify(district);
-
-		district.addVotingPlace(votingPlace);
 		return placeRepository.save(votingPlace);
 	}
 
@@ -130,9 +120,14 @@ public class InsertP implements Insert {
 		}
 
 		VoterVerifier.verify(voter);
-
 		VotingPlace votingPlace = placeRepository.findOne(idVotingPlace);
-		VotingPlaceVerifier.verify(votingPlace);
+
+		if (votingPlace == null) {
+			votingPlace = new VotingPlace();
+			votingPlace.setName("Colegio Electoral " + idVotingPlace);
+			votingPlace.setIdVotingPlace(idVotingPlace);
+			insertVotingPlace(votingPlace);
+		}
 
 		votingPlace.addVoter(voter);
 		return voterRepository.save(voter);

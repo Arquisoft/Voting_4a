@@ -10,6 +10,8 @@ public interface GetParameters {
 
 	Iterable<ElectionCall> getElectionCalls() throws ParametersException;
 
+	ElectionCall getElectionCall(Long idElectionCall) throws ParametersException;
+
 	Iterable<Election> getElections(Long idElectionCall) throws ParametersException;
 
 	Iterable<Region> getRegions(Long idElection) throws ParametersException;
@@ -18,6 +20,6 @@ public interface GetParameters {
 
 	Iterable<ReferendumOption> getCandidatures(Long idDistrict) throws ParametersException;
 
-	Iterable<VotingPlace> getVotingPlaces(Long idDistrict) throws ParametersException;
+	Iterable<VotingPlace> getVotingPlaces();
 
 }

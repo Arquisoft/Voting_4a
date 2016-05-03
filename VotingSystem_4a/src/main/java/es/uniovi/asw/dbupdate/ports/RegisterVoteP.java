@@ -59,13 +59,13 @@ public class RegisterVoteP implements RegisterVote {
 	}
 
 	@Override
-	public Voter registerVoter(String nif) throws ParametersException {
+	public Voter registerVoter(Long id) throws ParametersException {
 
-		if (nif == null || nif.equals("")) {
-			throw new ParametersException("El NIF del votante no es válido");
+		if (id == null) {
+			throw new ParametersException("El id del votante es nulo");
 		}
 
-		Voter voter = voterRepository.findByNif(nif);
+		Voter voter = voterRepository.findOne(id);
 		VoterVerifier.verify(voter);
 
 		voter.setVoted(true);

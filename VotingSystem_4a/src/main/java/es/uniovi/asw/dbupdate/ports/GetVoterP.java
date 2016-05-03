@@ -15,41 +15,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetVoterP implements GetVoter {
 
+	@Autowired
+	private VoterRepository voterRepository;
 
 	@Override
-	public Voter getVoter(VoterRepository voterRepo,Long idVoter) throws ParametersException {
+	public Voter getVoter(Long idVoter) throws ParametersException {
 
 		if (idVoter == null) {
 			throw new ParametersException("El id de votante es nulo");
 		}
 
-		Voter voter = voterRepo.findOne(idVoter);
+		Voter voter = voterRepository.findOne(idVoter);
 		VoterVerifier.verify(voter);
 
 		return voter;
 	}
 
 	@Override
-	public Voter getVoterByNif(VoterRepository voterRepo,String nif) throws ParametersException {
+	public Voter getVoterByNif(String nif) throws ParametersException {
 
 		if (nif == null || nif.equals("")) {
 			throw new ParametersException("El NIF del votante no es válido");
 		}
 
-		Voter voter = voterRepo.findByNif(nif);
+		Voter voter = voterRepository.findByNif(nif);
 		VoterVerifier.verify(voter);
 
 		return voter;
 	}
 
 	@Override
-	public Voter getVoterByEmail(VoterRepository voterRepo,String email) throws ParametersException {
+	public Voter getVoterByEmail(String email) throws ParametersException {
 
 		if (email == null || email.equals("")) {
 			throw new ParametersException("El email del votante no es válido");
 		}
 
-		Voter voter = voterRepo.findByEmail(email);
+		Voter voter = voterRepository.findByEmail(email);
 		VoterVerifier.verify(voter);
 
 		return voter;
