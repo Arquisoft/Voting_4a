@@ -7,6 +7,7 @@ Voting System
 [![codecov.io](https://codecov.io/github/Arquisoft/Voting_4a/coverage.svg?branch=master)](https://codecov.io/github/Arquisoft/Voting_4a?branch=master)
 
 [![Dependency Status](https://www.versioneye.com/user/projects/57288894a0ca35004baf7c7d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57288894a0ca35004baf7c7d)
+[![GitHub issues](https://img.shields.io/github/issues/Arquisoft/Voting_4a.svg)](https://github.com/Arquisoft/Voting_4a/issues)
 
 [Project Site](http://arquisoft.github.io/Voting_4a/)
 
