@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import asw.DBRepository.VoterRepository;
-import asw.model.Voter;
+import asw.Model.Voter;
 
 @ActiveProfiles(profiles="test")
 @RunWith(SpringJUnit4ClassRunner.class)

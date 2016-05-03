@@ -6,13 +6,19 @@ Voting System
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/f0ab4c8359fd4548ab373ae93ab8706a)](https://www.codacy.com/app/jelabra/Voting_4a)
 [![codecov.io](https://codecov.io/github/Arquisoft/Voting_4a/coverage.svg?branch=master)](https://codecov.io/github/Arquisoft/Voting_4a?branch=master)
 
+[![Dependency Status](https://www.versioneye.com/user/projects/57288894a0ca35004baf7c7d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57288894a0ca35004baf7c7d)
+[![GitHub issues](https://img.shields.io/github/issues/Arquisoft/Voting_4a.svg)](https://github.com/Arquisoft/Voting_4a/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Arquisoft/Voting_4a.svg)](https://github.com/Arquisoft/Voting_4a/network)
+
+[Project Site](http://arquisoft.github.io/Voting_4a/)
+
 ##Chat
 
 [![Gitter](https://badges.gitter.im/Arquisoft/Voting_4a.svg)](https://gitter.im/Arquisoft/Voting_4a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ##VoteCounting
 
-[Project Site](http://arquisoft.github.io/VoteCounting_4a/)
+[VoteCounting Project Site](http://arquisoft.github.io/VoteCounting_4a/)
 
 [![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://vote-counting-4a.herokuapp.com)
 
