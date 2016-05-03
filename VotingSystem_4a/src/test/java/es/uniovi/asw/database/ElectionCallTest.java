@@ -13,8 +13,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -59,10 +62,21 @@ public class ElectionCallTest {
 		assertNull(election.getId());
 
 		ElectionDateTime electionDateTime = new ElectionDateTime();
-		Calendar calendar = Calendar.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy H:m");
 
-		Time start = new Time(calendar.getTimeInMillis());
-		Time end = new Time(calendar.getTimeInMillis() + 1000000);
+		Date startDate;
+		Date endDate;
+		Timestamp start = null;
+		Timestamp end = null;
+
+		try {
+			startDate = dateFormat.parse("03/05/2016 10:00");
+			endDate = dateFormat.parse("03/05/2016 20:30");
+			start = new Timestamp(startDate.getTime());
+			end = new Timestamp(endDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		electionDateTime.setStartTime(start);
 		electionDateTime.setEndTime(end);

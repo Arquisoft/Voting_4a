@@ -2,7 +2,7 @@ package es.uniovi.asw.model.types;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * ElectionDateTime Created by ivan on 31/03/16.
@@ -11,32 +11,32 @@ import java.sql.Time;
 public class ElectionDateTime {
 
 	@Column(nullable = false)
-	private Time startTime;
+	private Timestamp startTime;
 
 	@Column(nullable = false)
-	private Time endTime;
+	private Timestamp endTime;
 
 	public ElectionDateTime() {
 	}
 
-	public ElectionDateTime(Time startTime, Time endTime) {
+	public ElectionDateTime(Timestamp startTime, Timestamp endTime) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
 
-	public Time getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
 
-	public Time getEndTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 
