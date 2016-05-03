@@ -1,5 +1,6 @@
 package es.uniovi.asw.controller;
 
+import es.uniovi.asw.dbupdate.ports.GetVoterP;
 import es.uniovi.asw.model.Election;
 import es.uniovi.asw.model.ElectionCall;
 import es.uniovi.asw.model.ReferendumOption;
@@ -43,6 +44,9 @@ public class Main {
 
 	@Autowired
 	private RVote rVote;
+
+	@Autowired
+	private GetVoterP getVoterP;
 
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -98,8 +102,8 @@ public class Main {
 		return new ModelAndView("check-voter");
 	}
 
-	@RequestMapping(value = "/vote/{id}/{voter}/{votingPlace}", method = RequestMethod.GET)
-	public ModelAndView Vote(@PathVariable Long id, @PathVariable Long voter, @PathVariable Long votingPlace, Model model) {
+	@RequestMapping(value = "/vote/{id}/{voter}/{idVotingPlace}", method = RequestMethod.GET)
+	public ModelAndView Vote(@PathVariable Long id, @PathVariable Long voter, @PathVariable Long idVotingPlace, Model model) {
 		logger.info("Vote access");
 
 		try {
@@ -111,7 +115,7 @@ public class Main {
 			model.addAttribute("referendumOptions", referendumOptions);
 
 			model.addAttribute("voter", voter);
-			model.addAttribute("votingPlace", votingPlace);
+			model.addAttribute("votingPlace", idVotingPlace);
 
 		}
 
@@ -124,13 +128,16 @@ public class Main {
 	}
 
 	@RequestMapping(value = "/vote", method = RequestMethod.POST)
-	public ModelAndView RegisterVote(@RequestParam(value = "voter") Long voter, @RequestParam(value = "votingPlace") Long votingPlace, @RequestParam(value = "id") Long id, Model model) {
+	public ModelAndView RegisterVote(@RequestParam(value = "voter") Long idVoter, @RequestParam(value = "votingPlace") Long votingPlace, @RequestParam(value = "id") Long id, Model model) {
 		logger.info("Vote");
 
 		try {
 
-			rVote.registerVote(voter, votingPlace, id);
-			model.addAttribute("error", "El voto ha sido contabilizado");
+			model.addAttribute("elecciones", rParameters.getElectionCalls());
+			model.addAttribute("voter", getVoterP.getVoter(idVoter));
+
+			rVote.registerVote(idVoter, votingPlace, id);
+			model.addAttribute("info", "El voto ha sido contabilizado");
 
 		}
 
@@ -164,7 +171,7 @@ public class Main {
 		try {
 
 			insertR.createReferendum(electionName, electionDesc, dateStart, dateEnd, electionQuestion, electionResp1, electionResp2);
-			model.addAttribute("error", "Referéndum creado correctamente");
+			model.addAttribute("info", "Referéndum creado correctamente");
 
 		}
 

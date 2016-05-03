@@ -57,5 +57,19 @@
         });
     </script>
 </div>
+<div th:if="${info != null}" th:fragment="info">
+    <div id="infoMsg" class="alert alert-info" role="alert">
+        <i class="fa fa-info-circle"></i>
+        <span class="sr-only"></span>
+        <span th:text="${info}">Causa</span>
+    </div>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#infoMsg").fadeOut(1500);
+            },5000);
+        });
+    </script>
+</div>
 </body>
 </html>

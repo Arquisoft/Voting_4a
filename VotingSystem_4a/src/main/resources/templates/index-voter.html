@@ -22,6 +22,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: error"><p>Error</p></div>
+<div th:replace="fragments/header :: info"></div>
 
 	<h1>Bienvenido, <span th:text="${voter.name}">Usuario</span></h1>
 	<div th:if="${elecciones != null and not #lists.isEmpty(elecciones)}" class="electionsTable">
@@ -35,7 +36,7 @@
 				<input type="hidden" th:value="${eleccion.id}" />
 				<td th:text="${eleccion.name}">Nombre</td>
 				<td th:text="${eleccion.description}">Descripción</td>
-				<td><a th:href="${'/vote/' + eleccion.id + '/' + voter.id + '/' + voter.code}">
+				<td><a th:href="${'/vote/' + eleccion.id + '/' + voter.id + '/' + voter.idVotingPlace}">
 						<img src="../static/images/vote.png" th:src="@{/images/vote.png}" />
 					</a>
 				</td>

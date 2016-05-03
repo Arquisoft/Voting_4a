@@ -34,7 +34,7 @@
 			<br/>
 
 			<input type="hidden" name="voter" th:value="${voter}" />
-			<input type="hidden" name="votingPlace" th:value="${voter.code}" />
+			<input type="hidden" name="votingPlace" th:value="${votingPlace}" />
 
 			<ul>
 				<li th:each="referendumOption : ${referendumOptions}" style="list-style-type: none;">
