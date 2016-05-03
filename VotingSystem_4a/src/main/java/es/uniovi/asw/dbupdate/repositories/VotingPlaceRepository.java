@@ -1,6 +1,5 @@
 package es.uniovi.asw.dbupdate.repositories;
 
-import es.uniovi.asw.model.District;
 import es.uniovi.asw.model.VotingPlace;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,6 +10,6 @@ public interface VotingPlaceRepository extends CrudRepository<VotingPlace, Long>
 
 	VotingPlace findByName(String name);
 
-	Iterable<VotingPlace> findByDistrict(District idDistrict);
+	VotingPlace findByIdVotingPlace(Long idVotingPlace);
 
 }
