@@ -25,7 +25,7 @@ public class Voter implements Serializable {
 	private String nif;
 
 	@Column(nullable = false)
-	private Long code;
+	private Long idVotingPlace;
 
 	private String password;
 	private boolean voted;
@@ -36,10 +36,10 @@ public class Voter implements Serializable {
 	public Voter() {
 	}
 
-	public Voter(String name, String email, String nif, Long code, String password) {
+	public Voter(String name, String email, String nif, Long idVotingPlace, String password) {
 		this.name = name;
 		this.nif = nif;
-		this.code = code;
+		this.idVotingPlace = idVotingPlace;
 		this.email = email;
 		this.password = password;
 	}
@@ -80,12 +80,12 @@ public class Voter implements Serializable {
 		this.nif = nif;
 	}
 
-	public Long getCode() {
-		return code;
+	public Long getIdVotingPlace() {
+		return idVotingPlace;
 	}
 
-	public void setCode(Long code) {
-		this.code = code;
+	public void setIdVotingPlace(Long idVotingPlace) {
+		this.idVotingPlace = idVotingPlace;
 	}
 
 	public String getPassword() {
@@ -131,7 +131,7 @@ public class Voter implements Serializable {
 	@Override
 	public String toString() {
 		return "Voter{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", nif='" + nif + '\''
-				+ ", code=" + code + ", password='" + password + '\'' + ", voted=" + voted + ", votingPlace="
+				+ ", idVotingPlace=" + idVotingPlace + ", password='" + password + '\'' + ", voted=" + voted + ", votingPlace="
 				+ votingPlace + '}';
 	}
 }

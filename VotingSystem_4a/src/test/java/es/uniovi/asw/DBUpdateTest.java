@@ -167,7 +167,7 @@ public class DBUpdateTest {
 		voter.setName("Iván");
 		voter.setEmail("ivan@eii.es");
 		voter.setNif("11111111A");
-		voter.setCode(1L);
+		voter.setIdVotingPlace(1L);
 
 		insertP.insertVoter(votingPlace.getId(), voter);
 

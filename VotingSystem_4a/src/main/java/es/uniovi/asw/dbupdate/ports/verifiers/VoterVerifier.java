@@ -26,7 +26,7 @@ public class VoterVerifier {
 			throw new ParametersException("El votante debe tener un email");
 		}
 
-		if (voter.getCode() == null || voter.getCode() < 0) {
+		if (voter.getIdVotingPlace() == null || voter.getIdVotingPlace() < 0) {
 			throw new ParametersException("El colegio electoral del votante no es correcto");
 		}
 
