@@ -1,19 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8" />
-<title>Configuración de la elección - Formoid jquery form</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="../static/formoid2/formoid-solid-purple.css" type="text/css"
-	th:href="@{/formoid2/formoid-solid-purple.css}" />
+<head th:fragment="head">
+	<meta charset="UTF-8"/>
+	<link rel='stylesheet' type='text/css'
+		  href='http://fonts.googleapis.com/css?family=Varela+Round'
+		  th:href="@{http://fonts.googleapis.com/css?family=Varela+Round}" />
+	<link rel="stylesheet" type='text/css'
+		  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+		  th:href="@{/css/bootstrap.css}" />
+	<link rel='stylesheet' type='text/css'
+		  href="../static/formoid2/formoid-solid-purple.css"
+		  th:href="@{/formoid2/formoid-solid-purple.css}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+			th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+			th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body class="blurBg-false" style="background-color: #EBEBEB">
-
-
-
 	<!-- Start Formoid form-->
-
 	<script type="text/javascript"
 		th:src="../static/formoid2/jquery.min.js"></script>
 	<form class="formoid-solid-purple"

@@ -1,35 +1,46 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-<link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"
-	rel="stylesheet" />
-<link rel="stylesheet" href="../static/css/menu.css"
-	th:href="@{/css/menu.css}"/>
+<head th:fragment="head">
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet"
+		  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+		  th:href="@{http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css}" />
+	<link rel="stylesheet"
+		  href="../static/css/bootstrap.css"
+		  th:href="@{/css/bootstrap.css}" />
+	<link rel='stylesheet' type='text/css'
+		  href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+		  th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}" />
+	<link rel="stylesheet" href="../static/css/menu.css"
+		  th:href="@{/css/menu.css}"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"
+			th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
+			th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-	<h1>Voting System!</h1>
-	<p>Welcome to our simple, intuitive and effective voting system.</p>
-	<nav id="colorNav">
+	<div class="title">
+		<h1>Junta Electoral</h1>
+		<p>Bienvenido al Panel de Administración Electoral</p>
+	</div>
 
+	<div id="colorNav">
 		<ul>
 			<li class="green"><a href="#" class="glyphicon glyphicon-home"></a>
 				<ul>
-					<li><a th:href="@{/}">Home</a></li>
-					<li><a href="#">Dropdown item 2</a></li>
+					<li><a href="/" th:href="@{/}">Salir</a></li>
 					<!-- More dropdown options -->
 				</ul></li>
 			<li class="blue"><a href="#" class="glyphicon glyphicon-user"></a>
 				<ul>
 					<li><a href="#">Voto presencial</a></li>
-					<li><a href="../templates/check-voter.html">Checkear votante</a></li>
+					<li><a href="../templates/check-voter.html" th:href="@{/check-voter}">Comprobar votante</a></li>
 
 				</ul></li>
 			<li class="red"><a href="#" class="glyphicon glyphicon-cog"></a>
 				<ul>
-					<li><a href="#">Crear nuevas elecciones</a></li>
+					<li><a href="#" th:href="@{/new}">Crear nuevas elecciones</a></li>
 
 					<!-- More dropdown options -->
 				</ul></li>
@@ -37,12 +48,12 @@
 			<li class="yellow"><a href="#"
 				class="glyphicon glyphicon-info-sign"></a>
 				<ul>
-					<li><a href="#">Acerca de Voting System</a></li>
+					<li><a href="#" th:href="@{/about}">Acerca de Voting System</a></li>
 
 					<!-- More dropdown options -->
 				</ul></li>
 			<!-- More menu items -->
 		</ul>
-	</nav>
+	</div>
 </body>
 </html>

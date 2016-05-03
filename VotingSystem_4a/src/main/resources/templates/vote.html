@@ -3,8 +3,8 @@
 <head th:fragment="head">
 	<meta charset="UTF-8"/>
 	<link rel='stylesheet' type='text/css'
-		  href="../static/css/button.css"
-		  th:href="@{/css/button.css}" />
+		  href="../static/css/electionsTable.css"
+		  th:href="@{/css/electionsTable.css}" />
 	<link rel='stylesheet' type='text/css'
 		  href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		  th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}" />
@@ -21,23 +21,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-<div th:replace="fragments/header :: error"><p>Error</p></div>
+<div th:replace="fragments/header :: error"></div>
 
-	<h1>Voting System</h1>
-	<div class="text-center">
-		<h2>Comprobación de votante.</h2>
-		<form th:action="@{/check-voter}" method="post" th:if="${email == null}">
-			<input type="text" name="voterEmail" />
-			<button type="submit" value="Check voter" class="myButton">Check</button>
+	<div style="width: 70%; margin: 60px auto;">
+		<form method="post" th:object="${election}" th:action="@{/vote}">
+			<p>
+				<span style="font-size: 20px" th:text="*{name}">Pregunta</span>
+				<br/>
+				<span style="font-size: 14px" th:text="*{description}">Descripción</span>
+			</p>
+			<hr/>
+			<br/>
+
+			<input type="hidden" name="voter" th:value="${voter}" />
+			<input type="hidden" name="votingPlace" th:value="${voter.code}" />
+
+			<ul>
+				<li th:each="referendumOption : ${referendumOptions}" style="list-style-type: none;">
+					<input type="radio" th:field="*{id}" th:value="${referendumOption.id}" />
+					<label th:for="${#ids.prev('id')}" th:text="${referendumOption.option}">Sí</label>
+				</li>
+			</ul>
+
+			<br/>
+			<input type="submit" value="Votar"/>
 		</form>
-
-		<p th:if="${email != null}">
-			¿Ha votado ya el usuario <span th:text="${email}">email</span>? <span th:text="${voted ? 'Sí' : 'No'}"></span>
-		</p>
 	</div>
 
-	<footer>
-		<a href="../templates/index-electoral-board.html" class="glyphicon glyphicon-home" th:href="@{/admin}">Volver</a>
-	</footer>
 </body>
 </html>
