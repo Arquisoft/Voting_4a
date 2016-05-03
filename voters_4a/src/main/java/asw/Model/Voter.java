@@ -1,4 +1,4 @@
-package asw.model;
+package asw.Model;
 
 import java.security.NoSuchAlgorithmException;
 
