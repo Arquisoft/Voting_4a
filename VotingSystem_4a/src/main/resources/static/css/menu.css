@@ -1,16 +1,21 @@
 #colorNav > ul{
-	width: 450px;
+	width: 392px;
 	margin:0 auto;
+}
+
+.title {
+	width: 50%;
+	margin: 0 auto;
+	padding-bottom: 10px;
+	text-align: center;
 }
 
 h1 {
-	width: 300px;
-	margin:0 auto;
+	margin:0;
 }
 
 p {
-	width: 330px;
-	margin:0 auto;
+	margin:0;
 }
 
 #colorNav > ul > li{ /* will style only the top level li */
