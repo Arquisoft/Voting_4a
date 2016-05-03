@@ -20,8 +20,8 @@ public class VotingPlace implements Serializable {
 	@Column(nullable = false)
 	private String name;
 
-	@ManyToOne
-	private District district;
+	@Column(nullable = false)
+	private Long idVotingPlace;
 
 	@OneToMany(mappedBy = "votingPlace", cascade = { CascadeType.ALL })
 	private Set<Voter> voters = new HashSet<>();
@@ -32,8 +32,9 @@ public class VotingPlace implements Serializable {
 	public VotingPlace() {
 	}
 
-	public VotingPlace(String name) {
+	public VotingPlace(String name, Long idVotingPlace) {
 		this.name = name;
+		this.idVotingPlace = idVotingPlace;
 	}
 
 	public void addVoter(Voter voter) {
@@ -68,20 +69,21 @@ public class VotingPlace implements Serializable {
 		return votes;
 	}
 
-	public District getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(District district) {
-		this.district = district;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
+	public Long getIdVotingPlace() {
+		return idVotingPlace;
+	}
+
+	public void setIdVotingPlace(Long idVotingPlace) {
+		this.idVotingPlace = idVotingPlace;
+	}
+
 	public String getName() {
 		return name;
+
 	}
 
 	public void setName(String name) {
@@ -90,24 +92,28 @@ public class VotingPlace implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof VotingPlace))
-			return false;
+		if (this == o) return true;
+		if (!(o instanceof VotingPlace)) return false;
 
 		VotingPlace that = (VotingPlace) o;
 
-		return getName() != null ? getName().equals(that.getName()) : that.getName() == null;
+		return getName() != null ? getName().equals(that.getName()) : that.getName() == null && (getIdVotingPlace() != null ? getIdVotingPlace().equals(that.getIdVotingPlace()) : that.getIdVotingPlace() == null);
 
 	}
 
 	@Override
 	public int hashCode() {
-		return getName() != null ? getName().hashCode() : 0;
+		int result = getName() != null ? getName().hashCode() : 0;
+		result = 31 * result + (getIdVotingPlace() != null ? getIdVotingPlace().hashCode() : 0);
+		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "VotingPlace{" + "id=" + id + ", name='" + name + '\'' + ", district=" + district + '}';
+		return "VotingPlace{" +
+				"idVotingPlace=" + idVotingPlace +
+				", name='" + name + '\'' +
+				", id=" + id +
+				'}';
 	}
 }

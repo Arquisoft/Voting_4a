@@ -24,9 +24,6 @@ public class District implements Serializable {
 	private Region region;
 
 	@OneToMany(mappedBy = "district", cascade = { CascadeType.ALL })
-	private Set<VotingPlace> votingPlaces = new HashSet<>();
-
-	@OneToMany(mappedBy = "district", cascade = { CascadeType.ALL })
 	private Set<Candidature> candidatures = new HashSet<>();
 
 	public District() {
@@ -34,22 +31,6 @@ public class District implements Serializable {
 
 	public District(String name) {
 		this.name = name;
-	}
-
-	public void addVotingPlace(VotingPlace votingPlace) {
-		if (votingPlaces.add(votingPlace)) {
-			votingPlace.setDistrict(this);
-		}
-	}
-
-	public void removeVotingPlace(VotingPlace votingPlace) {
-		if (votingPlaces.remove(votingPlace)) {
-			votingPlace.setDistrict(null);
-		}
-	}
-
-	public Set<VotingPlace> getVotingPlaces() {
-		return votingPlaces;
 	}
 
 	public void addCandidature(Candidature candidature) {
