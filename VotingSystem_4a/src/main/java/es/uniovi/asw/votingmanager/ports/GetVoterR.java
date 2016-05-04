@@ -19,7 +19,7 @@ public class GetVoterR {
 		return getVoterP.getVoter(id);
 	}
 
-	public Voter getVoter(String email) throws ParametersException {
-		return getVoterP.getVoterByEmail(email);
+	public Voter getVoter(String nif) throws ParametersException {
+		return getVoterP.getVoterByNif(nif);
 	}
 }
