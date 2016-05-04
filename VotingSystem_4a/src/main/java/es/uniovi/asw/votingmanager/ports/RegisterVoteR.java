@@ -18,8 +18,8 @@ public class RegisterVoteR {
 		registerVoteP.insertVote(idCandidature, idVotingPlace);
 	}
 
-	public void markVoted(Long idVoter) throws ParametersException {
-		registerVoteP.registerVoter(idVoter);
+	public void markVoted(Long idVoter, Long idElection) throws ParametersException {
+		registerVoteP.registerVoter(idVoter, idElection);
 	}
 
 }

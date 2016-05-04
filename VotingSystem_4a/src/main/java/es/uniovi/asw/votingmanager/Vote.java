@@ -7,6 +7,7 @@ import es.uniovi.asw.util.ParametersException;
  */
 public interface Vote {
 
-	void registerVote(Long idVoter, Long idVotingPlace, Long idCandidature) throws ParametersException;
+	void registerVote(Long idVoter, Long idVotingPlace, Long idElection, Long idCandidature) throws ParametersException;
 
+	void markVoterVoted(Long idVoter, Long idElection) throws ParametersException;
 }

@@ -7,7 +7,8 @@ import es.uniovi.asw.util.ParametersException;
  */
 public interface CheckVoter {
 
-	boolean hasVoted(Long id) throws ParametersException;
+	boolean hasVoted(Long id, Long idElection) throws ParametersException;
 
-	boolean hasVoted(String email) throws ParametersException;
+	boolean hasVoted(String nif, Long idElection) throws ParametersException;
+
 }

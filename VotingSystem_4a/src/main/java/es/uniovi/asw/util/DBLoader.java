@@ -116,10 +116,9 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 		placeRepository.save(votingPlace);
 
 		Voter ivan = new Voter("Iván", "ivan@eii.es", "11111111A", 1L, "ivan");
-		ivan.setVoted(true);
 		voterRepository.save(ivan);
 
-		Voter ricardo = new Voter("Ricardo", "ricardo@eii.es", "22222222A", 2L, "ricardo");
+		Voter ricardo = new Voter("Ricardo", "ricardo@eii.es", "22222222A", 1L, "ricardo");
 		voterRepository.save(ricardo);
 
 	}

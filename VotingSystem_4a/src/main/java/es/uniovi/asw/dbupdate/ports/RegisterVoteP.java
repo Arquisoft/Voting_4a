@@ -1,18 +1,9 @@
 package es.uniovi.asw.dbupdate.ports;
 
 import es.uniovi.asw.dbupdate.RegisterVote;
-import es.uniovi.asw.dbupdate.ports.verifiers.CandidatureVerifier;
-import es.uniovi.asw.dbupdate.ports.verifiers.VoteVerifier;
-import es.uniovi.asw.dbupdate.ports.verifiers.VoterVerifier;
-import es.uniovi.asw.dbupdate.ports.verifiers.VotingPlaceVerifier;
-import es.uniovi.asw.dbupdate.repositories.CandidatureRepository;
-import es.uniovi.asw.dbupdate.repositories.VoteRepository;
-import es.uniovi.asw.dbupdate.repositories.VoterRepository;
-import es.uniovi.asw.dbupdate.repositories.VotingPlaceRepository;
-import es.uniovi.asw.model.Candidature;
-import es.uniovi.asw.model.Vote;
-import es.uniovi.asw.model.Voter;
-import es.uniovi.asw.model.VotingPlace;
+import es.uniovi.asw.dbupdate.ports.verifiers.*;
+import es.uniovi.asw.dbupdate.repositories.*;
+import es.uniovi.asw.model.*;
 import es.uniovi.asw.util.ParametersException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,16 +50,23 @@ public class RegisterVoteP implements RegisterVote {
 	}
 
 	@Override
-	public Voter registerVoter(Long id) throws ParametersException {
+	public Voter registerVoter(Long id, Long idElection) throws ParametersException {
 
-		if (id == null) {
-			throw new ParametersException("El id del votante es nulo");
+		if (id == null || idElection == null) {
+			throw new ParametersException("Los id de votante y elección no pueder ser nulos");
 		}
 
 		Voter voter = voterRepository.findOne(id);
 		VoterVerifier.verify(voter);
 
-		voter.setVoted(true);
+		for (VotedElection votedElection : voter.getVotedElections()) {
+			if (votedElection.getIdElection() == idElection)
+				throw new ParametersException("El voto del votante ya ha sido registrado");
+		}
+
+		VotedElection votedElection = new VotedElection(idElection);
+
+		voter.addVotedElection(votedElection);
 		return voterRepository.save(voter);
 	}
 

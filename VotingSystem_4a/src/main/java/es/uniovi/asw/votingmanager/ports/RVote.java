@@ -16,14 +16,24 @@ public class RVote implements Vote {
 	private RegisterVoteR registerVoteR;
 
 	@Override
-	public void registerVote(Long idVoter, Long idVotingPlace, Long idCandidature) throws ParametersException {
+	public void registerVote(Long idVoter, Long idVotingPlace, Long idElection, Long idCandidature) throws ParametersException {
 
 		if (idVoter == null || idVotingPlace == null || idCandidature == null) {
 			throw new ParametersException("Los datos del voto no pueden ser nulos");
 		}
 
 		registerVoteR.vote(idCandidature, idVotingPlace);
-		registerVoteR.markVoted(idVoter);
+		registerVoteR.markVoted(idVoter, idElection);
+	}
+
+	@Override
+	public void markVoterVoted(Long idVoter, Long idElection) throws ParametersException {
+
+		if (idVoter == null || idElection == null) {
+			throw new ParametersException("Los datos del votante no pueden ser nulos");
+		}
+
+		registerVoteR.markVoted(idVoter, idElection);
 	}
 
 }

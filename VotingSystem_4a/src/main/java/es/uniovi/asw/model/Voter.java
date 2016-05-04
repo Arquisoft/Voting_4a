@@ -2,6 +2,8 @@ package es.uniovi.asw.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Voter Created by ivan on 29/03/16.
@@ -28,10 +30,12 @@ public class Voter implements Serializable {
 	private Long idVotingPlace;
 
 	private String password;
-	private boolean voted;
 
 	@ManyToOne
 	private VotingPlace votingPlace;
+
+	@OneToMany(mappedBy = "voter", cascade = { CascadeType.ALL })
+	private Set<VotedElection> votedElections = new HashSet<>();
 
 	public Voter() {
 	}
@@ -42,6 +46,22 @@ public class Voter implements Serializable {
 		this.idVotingPlace = idVotingPlace;
 		this.email = email;
 		this.password = password;
+	}
+
+	public void addVotedElection(VotedElection votedElection) {
+		if (votedElections.add(votedElection)) {
+			votedElection.setVoter(this);
+		}
+	}
+
+	public void removeVotedElection(VotedElection votedElection) {
+		if (votedElections.remove(votedElection)) {
+			votedElection.setVoter(null);
+		}
+	}
+
+	public Set<VotedElection> getVotedElections() {
+		return votedElections;
 	}
 
 	public VotingPlace getVotingPlace() {
@@ -96,14 +116,6 @@ public class Voter implements Serializable {
 		this.password = password;
 	}
 
-	public boolean hasVoted() {
-		return voted;
-	}
-
-	public void setVoted(boolean voted) {
-		this.voted = voted;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -131,7 +143,7 @@ public class Voter implements Serializable {
 	@Override
 	public String toString() {
 		return "Voter{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", nif='" + nif + '\''
-				+ ", idVotingPlace=" + idVotingPlace + ", password='" + password + '\'' + ", voted=" + voted + ", votingPlace="
+				+ ", idVotingPlace=" + idVotingPlace + ", password='" + password + '\'' + ", votingPlace="
 				+ votingPlace + '}';
 	}
 }
