@@ -2,10 +2,7 @@ package es.uniovi.asw.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Vote Created by ivan on 29/03/16.
@@ -25,6 +22,7 @@ public class Vote implements Serializable {
 	@ManyToOne
 	private Candidature candidature;
 
+	@Column(name="voteOption")
 	private boolean option;
 
 	public Vote() {

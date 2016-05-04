@@ -59,7 +59,7 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// Create a new election call
 
-		ElectionCall electionCall = new ElectionCall("Referendum de Prueba", "Referendum de Independencia de Asturias");
+		ElectionCall electionCall = new ElectionCall("Referéndum por el modelo electoral 2016", "Referéndum por el modelo electoral arobado en 2016");
 		electionCallRepository.save(electionCall);
 		log.info("Saved electionCall - id: " + electionCall.getId());
 
@@ -67,8 +67,8 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Election election = new Election();
 
-		election.setName("Congreso 2017");
-		election.setDescription("Elecciones al Congreso 2017");
+		election.setName("¿Estás de acuerdo con el nuevo modelo electoral?");
+		election.setDescription("Referéndum por el modelo electoral 2016");
 
 		ElectionDateTime electionDateTime = new ElectionDateTime();
 		Calendar calendar = Calendar.getInstance();
@@ -97,7 +97,7 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// Create a new district and link
 		District district = new District();
-		district.setName("Estado Español");
+		district.setName("Estado");
 
 		region.addDistrict(district);
 		districtRepository.save(district);
@@ -110,16 +110,11 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
 		district.addCandidature(referendumOption);
 		candidatureRepository.save(referendumOption);
 
-		VotingPlace votingPlace = new VotingPlace();
-		votingPlace.setName("Colegio La Ería");
-		votingPlace.setIdVotingPlace(1L);
-		placeRepository.save(votingPlace);
+		ReferendumOption referendumOption2 = new ReferendumOption();
+		referendumOption2.setOption("No");
 
-		Voter ivan = new Voter("Iván", "ivan@eii.es", "11111111A", 1L, MD5.getMD5("ivan"));
-		voterRepository.save(ivan);
-
-		Voter ricardo = new Voter("Ricardo", "ricardo@eii.es", "22222222A", 1L, MD5.getMD5("ricardo"));
-		voterRepository.save(ricardo);
+		district.addCandidature(referendumOption2);
+		candidatureRepository.save(referendumOption2);
 
 	}
 
