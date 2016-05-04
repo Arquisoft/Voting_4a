@@ -21,7 +21,7 @@ public class Login {
 
 			Voter voter = getVoterP.getVoterByEmail(email);
 
-			if (voter.getPassword().equals(password)) {
+			if (voter.getPassword().equals(MD5.getMD5(password))) {
 				return voter;
 			} else {
 				return null;
