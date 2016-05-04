@@ -77,7 +77,7 @@ public class DBUpdateTest {
 		assertNull(election.getId());
 
 		ElectionDateTime electionDateTime = new ElectionDateTime();
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy H:m");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:m");
 
 		Date startDate = null;
 		Date endDate = null;
@@ -205,9 +205,7 @@ public class DBUpdateTest {
 		voter = getVoterP.getVoter(voter.getId());
 		assertNotNull(voter);
 
-		assertFalse(voter.hasVoted());
-		voter = registerVoteP.registerVoter(voter.getId());
-		assertTrue(voter.hasVoted());
+		voter = registerVoteP.registerVoter(voter.getId(), election.getId());
 	}
 
 	@Test

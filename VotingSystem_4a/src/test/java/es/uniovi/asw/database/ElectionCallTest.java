@@ -62,7 +62,7 @@ public class ElectionCallTest {
 		assertNull(election.getId());
 
 		ElectionDateTime electionDateTime = new ElectionDateTime();
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy H:m");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:m");
 
 		Date startDate;
 		Date endDate;

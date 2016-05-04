@@ -62,7 +62,7 @@ public class InsertR {
 	private ElectionDateTime getElectionDateTime(String startTime, String endTime) throws ParseException {
 		ElectionDateTime electionDateTime = new ElectionDateTime();
 
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy H:m");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:m");
 		Date startDate = dateFormat.parse(startTime);
 		Date endDate = dateFormat.parse(endTime);
 
