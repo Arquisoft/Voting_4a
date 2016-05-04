@@ -74,22 +74,55 @@ public class Main {
 		return new ModelAndView("index-electoral-board");
 	}
 
+	@RequestMapping(value = "/admin-vote", method = RequestMethod.GET)
+	public ModelAndView adminVote(Model model) {
+		logger.info("Admin Vote access");
+
+		model.addAttribute("voter", new Voter());
+		model.addAttribute("elections", rParameters.getElections());
+
+		return new ModelAndView("admin-vote");
+	}
+
+	@RequestMapping(value = "/admin-vote", method = RequestMethod.POST)
+	public ModelAndView adminVoteVoting(@RequestParam(value = "voterNIF") String nif, @RequestParam(value = "election") Long idElection, Model model) {
+		logger.info("Admin Vote Voting access");
+		model.addAttribute("elections", rParameters.getElections());
+
+		try {
+
+			Voter voter = getVoterP.getVoterByNif(nif);
+			rVote.markVoterVoted(voter.getId(), idElection);
+			model.addAttribute("info", "El votante con NIF " + nif + " ha sido marcado correctamente");
+
+		}
+
+		catch (ParametersException e) {
+			logger.info("ERROR admin vote: " + e.getMessage());
+			model.addAttribute("error", e.getMessage());
+		}
+
+		return new ModelAndView("admin-vote");
+	}
+
 	@RequestMapping(value = "/check-voter", method = RequestMethod.GET)
 	public ModelAndView checkVoter(Model model) {
 		logger.info("Check voter access");
+
 		model.addAttribute("voter", new Voter());
+		model.addAttribute("elections", rParameters.getElections());
 
 		return new ModelAndView("check-voter");
 	}
 
 	@RequestMapping(value = "/check-voter", method = RequestMethod.POST)
-	public ModelAndView checkVoterVoted(@RequestParam(value = "voterEmail") String email, Model model) {
+	public ModelAndView checkVoterVoted(@RequestParam(value = "voterNIF") String nif, @RequestParam(value = "election") Long idElection, Model model) {
 		logger.info("Check voter voted access");
 
 		try {
 
-			boolean voted = rCheckVoter.hasVoted(email);
-			model.addAttribute("email", email);
+			boolean voted = rCheckVoter.hasVoted(nif, idElection);
+			model.addAttribute("nif", nif);
 			model.addAttribute("voted", voted);
 
 		}
@@ -97,6 +130,7 @@ public class Main {
 		catch (ParametersException e) {
 			logger.info("ERROR check-voter: " + e.getMessage());
 			model.addAttribute("error", e.getMessage());
+			model.addAttribute("elections", rParameters.getElections());
 		}
 
 		return new ModelAndView("check-voter");
@@ -128,16 +162,16 @@ public class Main {
 	}
 
 	@RequestMapping(value = "/vote", method = RequestMethod.POST)
-	public ModelAndView RegisterVote(@RequestParam(value = "voter") Long idVoter, @RequestParam(value = "votingPlace") Long votingPlace, @RequestParam(value = "id") Long id, Model model) {
+	public ModelAndView RegisterVote(@RequestParam(value = "voter") Long idVoter, @RequestParam(value = "votingPlace") Long votingPlace, @RequestParam(value = "election") Long election, @RequestParam(value = "id") Long id, Model model) {
 		logger.info("Vote");
 
 		try {
 
-			model.addAttribute("elecciones", rParameters.getElectionCalls());
-			model.addAttribute("voter", getVoterP.getVoter(idVoter));
-
-			rVote.registerVote(idVoter, votingPlace, id);
+			rVote.registerVote(idVoter, votingPlace, election, id);
 			model.addAttribute("info", "El voto ha sido contabilizado");
+
+			model.addAttribute("elecciones", rParameters.getElectionCalls(idVoter));
+			model.addAttribute("voter", getVoterP.getVoter(idVoter));
 
 		}
 
@@ -202,7 +236,7 @@ public class Main {
 			else if (loginData instanceof Voter) {
 				logger.info("Login Usuario " + ((Voter) loginData).getName());
 				model.addAttribute("voter", loginData);
-				model.addAttribute("elecciones", rParameters.getElectionCalls());
+				model.addAttribute("elecciones", rParameters.getElectionCalls(((Voter) loginData).getId()));
 				return new ModelAndView("index-voter");
 			}
 
