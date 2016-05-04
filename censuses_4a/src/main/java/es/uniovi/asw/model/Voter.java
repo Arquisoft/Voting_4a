@@ -1,59 +1,111 @@
 package es.uniovi.asw.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-@Table (name="TVoter")
+/**
+ * Voter Created by ivan on 29/03/16.
+ */
 @Entity
-public class Voter {
+public class Voter implements Serializable {
+
+	private static final long serialVersionUID = -2570727675899821819L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue
+	private Long id;
 
-	@NotNull
+	@Column(nullable = false)
 	private String name;
-	@NotNull
+
+	@Column(nullable = false)
 	private String email;
-	@NotNull
+
+	@Column(nullable = false)
 	private String nif;
-	@NotNull
-	private Long code;
-	@NotNull
+
+	@Column(nullable = false)
+	private Long idVotingPlace;
+
 	private String password;
 
-	protected Voter() {}
+	@ManyToOne
+	private VotingPlace votingPlace;
 
-	public Voter(String name, String email, String nif, Long code, String password) {
+	@OneToMany(mappedBy = "voter", cascade = { CascadeType.ALL })
+	private Set<VotedElection> votedElections = new HashSet<>();
+
+	public Voter() {
+	}
+
+	public Voter(String name, String email, String nif, Long idVotingPlace, String password) {
 		this.name = name;
 		this.nif = nif;
-		this.code = code;
+		this.idVotingPlace = idVotingPlace;
 		this.email = email;
 		this.password = password;
+	}
+
+	public void addVotedElection(VotedElection votedElection) {
+		if (votedElections.add(votedElection)) {
+			votedElection.setVoter(this);
+		}
+	}
+
+	public void removeVotedElection(VotedElection votedElection) {
+		if (votedElections.remove(votedElection)) {
+			votedElection.setVoter(null);
+		}
+	}
+
+	public Set<VotedElection> getVotedElections() {
+		return votedElections;
+	}
+
+	public VotingPlace getVotingPlace() {
+		return votingPlace;
+	}
+
+	public void setVotingPlace(VotingPlace votingPlace) {
+		this.votingPlace = votingPlace;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Long getCode() {
-		return code;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCode(Long code) {
-		this.code = code;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNif() {
+		return nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
+
+	public Long getIdVotingPlace() {
+		return idVotingPlace;
+	}
+
+	public void setIdVotingPlace(Long idVotingPlace) {
+		this.idVotingPlace = idVotingPlace;
 	}
 
 	public String getPassword() {
@@ -64,14 +116,34 @@ public class Voter {
 		this.password = password;
 	}
 
-	public String getNif() {
-		return nif;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Voter))
+			return false;
+
+		Voter voter = (Voter) o;
+
+		return getName() != null ? getName().equals(voter.getName())
+				: voter.getName() == null && (getEmail() != null ? getEmail().equals(voter.getEmail())
+						: voter.getEmail() == null
+								&& (getNif() != null ? getNif().equals(voter.getNif()) : voter.getNif() == null));
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getName() != null ? getName().hashCode() : 0;
+		result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+		result = 31 * result + (getNif() != null ? getNif().hashCode() : 0);
+		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "Voter [name=" + name + ", nif=" + nif + ", code=" + code + "]";
+		return "Voter{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", nif='" + nif + '\''
+				+ ", idVotingPlace=" + idVotingPlace + ", password='" + password + '\'' + ", votingPlace="
+				+ votingPlace + '}';
 	}
-
-
 }

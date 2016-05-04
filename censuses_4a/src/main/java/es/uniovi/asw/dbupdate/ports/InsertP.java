@@ -2,7 +2,9 @@ package es.uniovi.asw.dbupdate.ports;
 
 import es.uniovi.asw.dbupdate.Insert;
 import es.uniovi.asw.dbupdate.repositories.VoterRepository;
+import es.uniovi.asw.dbupdate.repositories.VotingPlaceRepository;
 import es.uniovi.asw.model.Voter;
+import es.uniovi.asw.model.VotingPlace;
 import es.uniovi.asw.util.ReadCensusException;
 
 import java.io.IOException;
@@ -10,10 +12,16 @@ import java.io.IOException;
 public class InsertP implements Insert {
 
 	private WreportR report;
+
 	private static VoterRepository voterRepository;
+	private static VotingPlaceRepository placeRepository;
 
 	public static void setVoterRepository(VoterRepository vr) {
 		voterRepository = vr;
+	}
+
+	public static void setVotingPlaceRepository(VotingPlaceRepository vpr) {
+		placeRepository = vpr;
 	}
 
 	public InsertP() {
@@ -25,8 +33,19 @@ public class InsertP implements Insert {
 
 		try {
 
-			if (verify(voter))
+			if (verify(voter)) {
+
+				VotingPlace votingPlace = placeRepository.findOne(voter.getIdVotingPlace());
+
+				if (votingPlace == null) {
+					votingPlace = new VotingPlace();
+					votingPlace.setName("Colegio Electoral " + voter.getIdVotingPlace());
+					votingPlace.setIdVotingPlace(voter.getIdVotingPlace());
+					placeRepository.save(votingPlace);
+				}
+
 				voterRepository.save(voter);
+			}
 
 		}
 
@@ -62,7 +81,7 @@ public class InsertP implements Insert {
 			throw new ReadCensusException("[ERROR] [InsertDB] Falta el password del usuario " + voter.getNif() + ", no se puede insertar en la BB.DD");
 		}
 		
-		if (voter.getCode() == null || voter.getCode().toString().equals("")) {
+		if (voter.getIdVotingPlace() == null || voter.getIdVotingPlace().toString().equals("")) {
 			throw new ReadCensusException("[ERROR] [InsertDB] Falta el código del colegio del usuario " + voter.getNif() + ", no se puede insertar en la BB.DD");
 		}
 
