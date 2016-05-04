@@ -13,7 +13,7 @@ public class ReferendumOption extends Candidature {
 
 	private static final long serialVersionUID = -1872697315315973327L;
 
-	@Column(name="voteOption", nullable = false)
+	@Column(name="vote_option", nullable = false)
 	private String option;
 
 	public ReferendumOption() {

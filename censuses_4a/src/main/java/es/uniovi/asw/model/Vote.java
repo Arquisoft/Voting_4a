@@ -21,7 +21,7 @@ public class Vote implements Serializable {
 	@ManyToOne
 	private Candidature candidature;
 
-	@Column(name="voteOption")
+	@Column(name="vote_option")
 	private boolean option;
 
 	public Vote() {
