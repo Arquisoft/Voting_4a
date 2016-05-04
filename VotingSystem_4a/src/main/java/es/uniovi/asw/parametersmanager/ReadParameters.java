@@ -1,5 +1,6 @@
 package es.uniovi.asw.parametersmanager;
 
+import es.uniovi.asw.model.Election;
 import es.uniovi.asw.model.ElectionCall;
 import es.uniovi.asw.util.ParametersException;
 
@@ -9,6 +10,7 @@ import es.uniovi.asw.util.ParametersException;
  */
 public interface ReadParameters {
 
-	Iterable<ElectionCall> getElectionCalls() throws ParametersException;
+	Iterable<ElectionCall> getElectionCalls(Long idVoter) throws ParametersException;
 
+	Iterable<Election> getElections();
 }
