@@ -45,8 +45,11 @@
 		</table>
 	</div>
 	<div th:if="${elecciones != null and #lists.isEmpty(elecciones)}">
-		No hay elecciones abiertas.
+		No hay elecciones abiertas o ya has votado en ellas.
 	</div>
 
+<footer style="margin-top: 25px;">
+	<a href="../templates/index.html" class="glyphicon glyphicon-home" th:href="@{/}">Salir</a>
+</footer>
 </body>
 </html>

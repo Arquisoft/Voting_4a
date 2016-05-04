@@ -25,18 +25,23 @@
 
 	<h1>Voting System</h1>
 	<div class="text-center">
-		<h2>Comprobación de votante.</h2>
-		<form th:action="@{/check-voter}" method="post" th:if="${email == null}">
-			<input type="text" name="voterEmail" />
+		<h5>Comprobación de votante.</h5>
+		<form th:action="@{/check-voter}" th:object="${elections}" method="post" th:if="${nif == null}">
+			<select id="election" name="election">
+				<option th:each="election : ${elections}"
+						th:value="${election.id}"
+						th:text="${election.name}">Elección</option>
+			</select>
+			<input type="text" name="voterNIF" placeholder="Introduce el NIF" required="required" />
 			<button type="submit" value="Check voter" class="myButton">Check</button>
 		</form>
 
-		<p th:if="${email != null}">
-			¿Ha votado ya el usuario <span th:text="${email}">email</span>? <span th:text="${voted ? 'Sí' : 'No'}"></span>
+		<p th:if="${nif != null}">
+			¿Ha votado ya el usuario <span th:text="${nif}">NIF</span>? <span th:text="${voted ? 'Sí' : 'No'}"></span>
 		</p>
 	</div>
 
-	<footer>
+	<footer style="margin-top: 25px;">
 		<a href="../templates/index-electoral-board.html" class="glyphicon glyphicon-home" th:href="@{/admin}">Volver</a>
 	</footer>
 </body>
