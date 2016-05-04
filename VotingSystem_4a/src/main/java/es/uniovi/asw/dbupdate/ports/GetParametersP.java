@@ -70,6 +70,11 @@ public class GetParametersP implements GetParameters {
 	}
 
 	@Override
+	public Iterable<Election> getElections() {
+		return electionRepository.findAll();
+	}
+
+	@Override
 	public Iterable<Region> getRegions(Long idElection) throws ParametersException {
 
 		if (idElection == null) {

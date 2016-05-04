@@ -14,6 +14,8 @@ public interface GetParameters {
 
 	Iterable<Election> getElections(Long idElectionCall) throws ParametersException;
 
+	Iterable<Election> getElections();
+
 	Iterable<Region> getRegions(Long idElection) throws ParametersException;
 
 	Iterable<District> getDistricts(Long idRegion) throws ParametersException;
