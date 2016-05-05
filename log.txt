@@ -1,5 +1,5 @@
-[05/05/2016 01:19:26] [ERROR] [censo.txt:1] El usuario 11111111A no tiene nombre
-[05/05/2016 01:19:26] [ERROR] [censo.txt:2] El email del usuario 11111112B no es válido
-[05/05/2016 01:19:26] [ERROR] [censo.txt:3] El NIF del usuario no tiene el formato correcto
-[05/05/2016 01:19:26] [ERROR] [censo.txt:4] El colegio electoral del usuario 11111114D no es válido
-[05/05/2016 01:19:26] [ERROR] [InsertDB] El votante 11111114D ya existe
+[05/05/2016 02:25:28] [ERROR] [censo.txt:1] El usuario 11111111A no tiene nombre
+[05/05/2016 02:25:28] [ERROR] [censo.txt:2] El email del usuario 11111112B no es válido
+[05/05/2016 02:25:28] [ERROR] [censo.txt:3] El NIF del usuario no tiene el formato correcto
+[05/05/2016 02:25:28] [ERROR] [censo.txt:4] El colegio electoral del usuario 11111114D no es válido
+[05/05/2016 02:25:28] [ERROR] [InsertDB] El votante 11111114D ya existe
