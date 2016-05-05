@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import asw.util.MD5;
 //Voters
-@Table (name="TVoter")
+@Table (name="voter")
 @Entity
 public class Voter {
 
@@ -31,7 +31,7 @@ public class Voter {
 	@Column (name="email")
 	private String email;
 
-	@Column (name="code")
+	@Column (name="id_voting_place")
 	private long colegioelectoral;
 	
 	/**
