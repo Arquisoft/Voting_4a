@@ -5,12 +5,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import es.uniovi.asw.model.Voter;
 
 @SpringBootApplication
-
+@IntegrationTest("server.port:0")
 @ActiveProfiles("test")
 public class TestApp {
 

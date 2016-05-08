@@ -2,15 +2,14 @@ package es.uniovi.asw.conf;
 
 import java.util.List;
 
-import es.uniovi.asw.model.Opcion;
-import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.model.*;
 
 public class VotacionManager {
 	
 	private static VotacionManager vm = null;
 	
-	private Votacion votacion;
-	private List<Opcion> opciones;
+	private Election votacion;
+	private List<Candidature> opciones;
 	
 	private VotacionManager() { }
 	
@@ -21,19 +20,19 @@ public class VotacionManager {
 		return vm;
 	}
 
-	public void setVotacion(Votacion votacion) {
+	public void setVotacion(Election votacion) {
 		this.votacion = votacion;
 	}
 
-	public void setOpciones(List<Opcion> opciones) {
+	public void setOpciones(List<Candidature> opciones) {
 		this.opciones = opciones;
 	}
 
-	public List<Opcion> getOpciones() {
+	public List<Candidature> getOpciones() {
 		return opciones;
 	}
 
-	public Votacion getVotacion() {
+	public Election getVotacion() {
 		return votacion;
 	}
 }

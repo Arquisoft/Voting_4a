@@ -1,4 +1,4 @@
-package es.uniovi.asw.dbupdate.repositories;
+package es.uniovi.asw.persistence.repository;
 
 import es.uniovi.asw.model.Candidature;
 import es.uniovi.asw.model.District;
@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface CandidatureRepository extends CrudRepository<Candidature, Long> {
 
-	Iterable<ReferendumOption> findByDistrict(District district);
+	Iterable<Candidature> findByDistrict(District district);
 }

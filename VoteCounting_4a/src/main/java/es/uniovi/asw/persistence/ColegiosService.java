@@ -1,6 +1,6 @@
 package es.uniovi.asw.persistence;
 
-import es.uniovi.asw.model.ColegioElectoral;
+import es.uniovi.asw.model.VotingPlace;
 
 public interface ColegiosService {
 
@@ -11,6 +11,6 @@ public interface ColegiosService {
 	 *            del colegio electoral a buscar
 	 * @return El colegio electoral, si es que existe
 	 */
-	ColegioElectoral findById(long id);
+	VotingPlace findById(long id);
 
 }

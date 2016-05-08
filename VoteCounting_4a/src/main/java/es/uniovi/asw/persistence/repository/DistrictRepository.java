@@ -1,4 +1,4 @@
-package es.uniovi.asw.dbupdate.repositories;
+package es.uniovi.asw.persistence.repository;
 
 import es.uniovi.asw.model.District;
 import es.uniovi.asw.model.Region;

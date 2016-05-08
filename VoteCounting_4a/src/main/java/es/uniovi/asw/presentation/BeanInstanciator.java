@@ -1,6 +1,8 @@
 package es.uniovi.asw.presentation;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -9,6 +11,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
+import es.uniovi.asw.model.Candidature;
+import es.uniovi.asw.model.Election;
+import es.uniovi.asw.model.ReferendumOption;
+import es.uniovi.asw.model.Vote;
+import es.uniovi.asw.model.types.ElectionDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -17,8 +24,6 @@ import es.uniovi.asw.conf.VotacionManager;
 import es.uniovi.asw.instanciator.AbstractFactory;
 import es.uniovi.asw.instanciator.ReferendumFactory;
 import es.uniovi.asw.instanciator.VotesCalc;
-import es.uniovi.asw.model.Votacion;
-import es.uniovi.asw.model.Voto;
 import es.uniovi.asw.persistence.OpcionesService;
 import es.uniovi.asw.persistence.VotacionesService;
 import es.uniovi.asw.persistence.VotosService;
@@ -66,7 +71,15 @@ public class BeanInstanciator implements Serializable {
 	public void init() {
 		System.out.println("BeanInstanciator - INIT");
 
-		Votacion vot = votacionesService.getVoteInfo(true);
+		List<Election> votaciones = votacionesService.getVoteInfo(true);
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		// TODO: seleccionar la votación que escoja el usuario en la UI, no la primera activa
+		// TODO: comprobar que hay votaciones activas y si no las hay evitar que reviente
+		//////////////////////////////////////////////////////////////////////////////////////
+		Election vot = votaciones.get(0);
+		//////////////////////////////////////////////////////////////////////////////////////
+
 		VotacionManager.getVM().setOpciones(opcionesService.getOpciones(vot));
 		VotacionManager.getVM().setVotacion(vot);
 
@@ -87,11 +100,11 @@ public class BeanInstanciator implements Serializable {
 	 * instanciará el sistema de una forma u otra.
 	 */
 	private void cargarTipoVotacion() {
-		Votacion vot = VotacionManager.getVM().getVotacion();
+		String candidatureType = VotacionManager.getVM().getOpciones().get(0).getCandidatureType();
 		// Indicamos que pagina tiene que ir
-		setPageView(vot.getNombre().toLowerCase() + ".xhtml");
+		setPageView(candidatureType.toLowerCase() + ".xhtml");
 		AbstractFactory absf;
-		switch (vot.getNombre().toUpperCase()) {
+		switch (candidatureType.toUpperCase()) {
 		case "REFERENDUM": {
 			absf = new ReferendumFactory();
 			break;
@@ -115,12 +128,12 @@ public class BeanInstanciator implements Serializable {
 			
 			@Override
 			public void run() {
-				List<Voto> votoscalculados = votosService.getVotes(false);
+				List<Vote> votoscalculados = votosService.getVotes(false);
 				beanResults.getVotos().addAll(votesCalc.calcularResultados(votoscalculados));
 				beanResults.getVotosAgrupados().putAll(VotesUtil.groupByOption(votoscalculados));
 
-				for (Voto v : votoscalculados) {
-					v.setLeido(true);
+				for (Vote v : votoscalculados) {
+					v.setRead(true);
 					votosService.updateVotes(v);
 				}
 			}

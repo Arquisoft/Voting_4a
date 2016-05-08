@@ -40,7 +40,7 @@ public class InsertP implements Insert {
 				if (votingPlace == null) {
 					votingPlace = new VotingPlace();
 					votingPlace.setName("Colegio Electoral " + voter.getIdVotingPlace());
-					votingPlace.setIdVotingPlace(voter.getIdVotingPlace());
+					votingPlace.addVoter(voter);
 					placeRepository.save(votingPlace);
 				}
 

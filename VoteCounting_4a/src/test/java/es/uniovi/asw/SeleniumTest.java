@@ -9,13 +9,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cucumber.api.cli.Main;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { Main.class })
+@SpringApplicationConfiguration(classes = Application.class)
+@WebIntegrationTest(value = "server.port=8083")
 public class SeleniumTest {
 
 	private WebDriver driver;
@@ -30,7 +35,7 @@ public class SeleniumTest {
 	@Before
 	public void run() throws Exception {
 		driver = new FirefoxDriver();
-		baseUrl = "http://localhost:8080/";
+		baseUrl = "http://localhost:8083/";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 

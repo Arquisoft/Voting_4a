@@ -2,8 +2,9 @@ package es.uniovi.asw.persistence;
 
 import java.util.List;
 
-import es.uniovi.asw.model.Opcion;
-import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.model.Candidature;
+import es.uniovi.asw.model.Election;
+import es.uniovi.asw.model.ReferendumOption;
 
 public interface OpcionesService {
 
@@ -15,6 +16,6 @@ public interface OpcionesService {
 	 *            La votacion de la que queremos obtener las opciones
 	 * @return Lista con las opciones de voto
 	 */
-	List<Opcion> getOpciones(Votacion v);
+	List<Candidature> getOpciones(Election v);
 
 }

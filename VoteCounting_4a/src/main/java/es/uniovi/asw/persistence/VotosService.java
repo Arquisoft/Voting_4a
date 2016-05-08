@@ -2,18 +2,18 @@ package es.uniovi.asw.persistence;
 
 import java.util.List;
 
-import es.uniovi.asw.model.ColegioElectoral;
-import es.uniovi.asw.model.Voto;
+import es.uniovi.asw.model.Vote;
+import es.uniovi.asw.model.VotingPlace;
 
 public interface VotosService {
 
 	/**
 	 * Metodo que devuelve todos los votos dado un colegio electoral.
 	 * 
-	 * @param ce
-	 * @return
+	 * @param ce colegio electoral
+	 * @return lista de votos
 	 */
-	List<Voto> getAllVotes(ColegioElectoral ce);
+	List<Vote> getAllVotes(VotingPlace ce);
 
 	/**
 	 * Metodo para actualizar el estado de un voto dado a leido, con el fin de
@@ -21,7 +21,7 @@ public interface VotosService {
 	 * 
 	 * @param v
 	 */
-	void updateVotes(Voto v);
+	void updateVotes(Vote v);
 
 	/**
 	 * Metodo que devuelve todos los votos dado un colegio electoral, que aun no
@@ -30,6 +30,6 @@ public interface VotosService {
 	 * @param leido
 	 * @return
 	 */
-	List<Voto> getVotes(boolean leido);
+	List<Vote> getVotes(boolean leido);
 
 }

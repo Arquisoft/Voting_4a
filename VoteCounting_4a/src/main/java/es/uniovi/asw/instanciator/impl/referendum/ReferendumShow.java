@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import es.uniovi.asw.model.*;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.DateAxis;
 import org.primefaces.model.chart.LineChartModel;
@@ -14,8 +15,6 @@ import org.primefaces.model.chart.LineChartSeries;
 
 import es.uniovi.asw.conf.VotacionManager;
 import es.uniovi.asw.instanciator.VotesShow;
-import es.uniovi.asw.model.Opcion;
-import es.uniovi.asw.model.Voto;
 
 public class ReferendumShow extends VotesShow {
 
@@ -50,7 +49,7 @@ public class ReferendumShow extends VotesShow {
 	 * @see es.uniovi.asw.instanciator.VotesShow#setResults(java.util.List)
 	 */
 	@Override
-	public void setResults(List<Voto> results) {
+	public void setResults(List<Vote> results) {
 		setResultados(results);
 	}
 
@@ -61,8 +60,8 @@ public class ReferendumShow extends VotesShow {
 	 */
 	@Override
 	protected void updateChartLive() {
-		for (Opcion o : VotacionManager.getVM().getOpciones()) {
-			pieChartModel.getData().put(o.getNombre(), getVotosOpcion(o).size());
+		for (Candidature o : VotacionManager.getVM().getOpciones()) {
+			pieChartModel.getData().put(((ReferendumOption) o).getOption(), getVotosOpcion((ReferendumOption) o).size());
 		}
 	}
 
@@ -75,14 +74,14 @@ public class ReferendumShow extends VotesShow {
 	protected void updateChartLine() {
 		lineChartModel = new LineChartModel();
 		LineChartSeries series;
-		for (Opcion o : VotacionManager.getVM().getOpciones()) {
+		for (Candidature o : VotacionManager.getVM().getOpciones()) {
 			series = new LineChartSeries();
-			series.setLabel(o.getNombre());
+			series.setLabel(((ReferendumOption) o).getOption());
 
-			Map<Date, List<Voto>> sorted = new TreeMap<Date, List<Voto>>(
-					getVotosOpcion(o).stream().collect(Collectors.groupingBy(Voto::getFechaVoto)));
+			Map<Date, List<Vote>> sorted = new TreeMap<Date, List<Vote>>(
+					getVotosOpcion((ReferendumOption) o).stream().collect(Collectors.groupingBy(Vote::getVoteDate)));
 
-			for (Map.Entry<Date, List<Voto>> entrada : sorted.entrySet()) {
+			for (Map.Entry<Date, List<Vote>> entrada : sorted.entrySet()) {
 				series.set(new SimpleDateFormat("HH:mm").format(entrada.getKey()), entrada.getValue().size());
 			}
 			lineChartModel.addSeries(series);
@@ -104,10 +103,10 @@ public class ReferendumShow extends VotesShow {
 	 * opcion pasada por parametros.
 	 * 
 	 * @param o
-	 *            Opcion
-	 * @return Lista de votos de la Opcion pasada por parametros
+	 *            ReferendumOption
+	 * @return Lista de votos de la candidatura pasada por parametros
 	 */
-	private List<Voto> getVotosOpcion(Opcion o) {
-		return resultados.stream().filter(v -> v.getOpcion().getId() == o.getId()).collect(Collectors.toList());
+	private List<Vote> getVotosOpcion(ReferendumOption o) {
+		return resultados.stream().filter(v -> v.getCandidature().getId() == o.getId()).collect(Collectors.toList());
 	}
 }

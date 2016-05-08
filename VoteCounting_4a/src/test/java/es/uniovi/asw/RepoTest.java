@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.util.List;
+
+import es.uniovi.asw.model.*;
+import es.uniovi.asw.persistence.VotacionesService;
+import es.uniovi.asw.persistence.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,29 +15,29 @@ import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import es.uniovi.asw.model.ColegioElectoral;
-import es.uniovi.asw.model.Opcion;
-import es.uniovi.asw.model.Votacion;
-import es.uniovi.asw.model.Voto;
-import es.uniovi.asw.persistence.repository.ColegiosElectoralesRepository;
-import es.uniovi.asw.persistence.repository.OpcionesRepository;
-import es.uniovi.asw.persistence.repository.VotacionesRepository;
-import es.uniovi.asw.persistence.repository.VotosRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-@IntegrationTest({ "server.port=0" })
+@IntegrationTest("server.port:0")
 public class RepoTest {
 
 	@Autowired
-	private VotosRepository votoRepo;
+	private VotingPlaceRepository votingPlaceRepo;
+
 	@Autowired
-	private VotacionesRepository votacionRepo;
+	private VoteRepository votoRepo;
+
 	@Autowired
-	private ColegiosElectoralesRepository colegioElectoralRepo;
+	private ElectionRepository votacionRepo;
+
 	@Autowired
-	private OpcionesRepository opcionRepo;
+	private VotacionesService votacionesService;
+
+	@Autowired
+	private CandidatureRepository opcionRepo;
+
+	@Autowired
+	private DistrictRepository districtRepository;
 
 	/**
 	 * Metodo que comprueba el correcto funcionamiento de la tabla voto de la
@@ -43,52 +47,50 @@ public class RepoTest {
 	 */
 	@Test
 	public void testVotos() throws Exception {
-		List<Voto> votos = (List<Voto>) votoRepo.findAll();
-		assertEquals(85, votos.size());
-		List<Voto> votosNoLeidos = votoRepo.findByLeido(false);
-		assertEquals(85, votosNoLeidos.size());
-		List<Voto> votosLeidos = votoRepo.findByLeido(true);
+		List<Vote> votos = (List<Vote>) votoRepo.findAll();
+		assertEquals(9, votos.size());
+		List<Vote> votosNoLeidos = votoRepo.findByRead(false);
+		assertEquals(9, votosNoLeidos.size());
+		List<Vote> votosLeidos = votoRepo.findByRead(true);
 		assertEquals(0, votosLeidos.size());
-		List<Voto> votosColegio1 = votoRepo.findByColegioElectoral(colegioElectoralRepo.findById(1));
-		assertEquals(7, votosColegio1.size());
-		List<Voto> votosColegio2 = votoRepo.findByColegioElectoral(colegioElectoralRepo.findById(2));
-		assertEquals(78, votosColegio2.size());
+		List<Vote> votosColegio1 = votoRepo.findByVotingPlace(votingPlaceRepo.findOne(1L));
+		assertEquals(3, votosColegio1.size());
+		List<Vote> votosColegio2 = votoRepo.findByVotingPlace(votingPlaceRepo.findOne(2L));
+		assertEquals(1, votosColegio2.size());
 	}
 
 	/**
 	 * Metodo que comprueba el correcto funcionamiento de la tabla votacion de
 	 * la base de datos.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
 	public void testVotacion() throws Exception {
-		Votacion votacion = votacionRepo.findByActiva(true);
-		assertNotNull(votacion);
-		votacion = votacionRepo.findByActiva(false);
-		assertNull(votacion);
-		List<Votacion> votaciones = (List<Votacion>) votacionRepo.findAll();
+		List<Election> votaciones = votacionesService.getVoteInfo(true);
+		assertNotNull(votaciones);
+		votaciones = (List<Election>) votacionRepo.findAll();
 		assertEquals(1, votaciones.size());
-		votacion = votacionRepo.findOne((long) 1);
+		Election votacion = votacionRepo.findOne((long) 1);
 		assertNotNull(votacion);
 	}
 
 	/**
 	 * Metodo que comprueba el correcto funcionamiento de la tabla colegio
 	 * electoral de la base de datos.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
-	public void testColegioElectoral() throws Exception {
-		List<ColegioElectoral> colegios = (List<ColegioElectoral>) colegioElectoralRepo.findAll();
-		assertEquals(2, colegios.size());
-		ColegioElectoral colegio = colegioElectoralRepo.findById(1);
-		assertEquals("Colegio electoral 1", colegio.getNombre());
-		colegio = colegioElectoralRepo.findById(2);
-		assertEquals("Colegio electoral 2", colegio.getNombre());
-		colegio = colegioElectoralRepo.findOne((long) 1);
+	public void testVotingPlace() throws Exception {
+		List<VotingPlace> colegios = (List<VotingPlace>) votingPlaceRepo.findAll();
+		assertEquals(4, colegios.size());
+		VotingPlace votingPlace = new VotingPlace();
+		votingPlace.setName("Colegio Electoral 1");
+		votingPlaceRepo.save(votingPlace);
+		VotingPlace colegio = votingPlaceRepo.findOne(1L);
 		assertNotNull(colegio);
+		assertEquals("Colegio Electoral 1", colegio.getName());
 	}
 
 	/**
@@ -99,12 +101,10 @@ public class RepoTest {
 	 */
 	@Test
 	public void testOpcion() throws Exception {
-		List<Opcion> opciones = (List<Opcion>) opcionRepo.findAll();
+		List<Candidature> opciones = (List<Candidature>) opcionRepo.findAll();
 		assertEquals(3, opciones.size());
-		opciones = opcionRepo.findByVotacion(votacionRepo.findByActiva(true));
+		opciones = (List<Candidature>) opcionRepo.findByDistrict(districtRepository.findOne(1L));
 		assertEquals(3, opciones.size());
-		opciones = opcionRepo.findByVotacion(votacionRepo.findByActiva(false));
-		assertEquals(0, opciones.size());
 	}
 
 }

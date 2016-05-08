@@ -1,15 +1,17 @@
 package es.uniovi.asw.persistence;
 
-import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.model.Election;
+
+import java.util.List;
 
 public interface VotacionesService {
 
 	/**
 	 * Metodo que comprueba, dada una votacion, si esta activa o no.
 	 * 
-	 * @param opcion
-	 * @return
+	 * @param opcion boolean
+	 * @return Lista de elecciones
 	 */
-	Votacion getVoteInfo(boolean opcion);
+	List<Election> getVoteInfo(boolean opcion);
 
 }

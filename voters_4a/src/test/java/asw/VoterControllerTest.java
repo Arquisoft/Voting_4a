@@ -73,7 +73,7 @@ public class VoterControllerTest {
 		repository.save(votante); 
 		
 	//--Se comprueba que se añade al repositorio
-		assertEquals(1, repository.count());
+		assertEquals(16, repository.count());
 		
 	//--Comprobamos que el votante existe y tiene el formato adecuado.
 		mockMvc
@@ -85,7 +85,7 @@ public class VoterControllerTest {
 		
 	//--Más pruebas con diferentes votantes
 		repository.save(new Voter("Bernardo", "bernardin@uniovi.es","3s70", "76355422B")); 
-		assertEquals(2, repository.count());
+		assertEquals(17, repository.count());
 		
 		mockMvc
 		.perform(post("/user")
@@ -94,7 +94,7 @@ public class VoterControllerTest {
 		).andExpect(status().is(202));
 	//-------------
 		repository.save(new Voter("Luis", "ludu@outlook.es","ruffles", "76687742C")); 
-		assertEquals(3, repository.count());
+		assertEquals(18, repository.count());
 		
 		mockMvc
 		.perform(post("/user")

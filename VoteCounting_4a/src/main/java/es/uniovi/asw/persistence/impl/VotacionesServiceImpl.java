@@ -1,21 +1,35 @@
 package es.uniovi.asw.persistence.impl;
 
+import es.uniovi.asw.model.Election;
+import es.uniovi.asw.persistence.repository.ElectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.uniovi.asw.model.Votacion;
 import es.uniovi.asw.persistence.VotacionesService;
-import es.uniovi.asw.persistence.repository.VotacionesRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class VotacionesServiceImpl implements VotacionesService {
 	
 	@Autowired
-	private VotacionesRepository repo;
+	private ElectionRepository repo;
 
 	@Override
-	public Votacion getVoteInfo(boolean activa) {
-		return repo.findByActiva(activa);
+	public List<Election> getVoteInfo(boolean activa) {
+
+		List<Election> elections = new ArrayList<>();
+
+		for (Election election : repo.findAll()) {
+			if (activa && election.isActiva())
+				elections.add(election);
+
+			if (!activa && !election.isActiva())
+				elections.add(election);
+		}
+
+		return elections;
 	}
 
 }

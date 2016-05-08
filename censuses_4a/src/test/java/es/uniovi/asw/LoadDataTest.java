@@ -13,7 +13,9 @@ import org.junit.Test;
 import es.uniovi.asw.parser.parsers.CensusParser;
 import es.uniovi.asw.parser.parsers.XLSXParser;
 import es.uniovi.asw.util.ReadCensusException;
+import org.springframework.boot.test.IntegrationTest;
 
+@IntegrationTest("server.port:0")
 public class LoadDataTest {
 	
 	private static final Logger logger = Logger.getLogger(LoadDataTest.class.getName());
