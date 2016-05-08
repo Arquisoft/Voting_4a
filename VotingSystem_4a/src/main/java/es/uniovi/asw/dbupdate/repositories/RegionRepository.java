@@ -11,6 +11,6 @@ public interface RegionRepository extends CrudRepository<Region, Long> {
 
 	Region findByName(String name);
 
-	Iterable<Region> findByElection(Election idElection);
+	Iterable<Region> findByElection(Election election);
 
 }

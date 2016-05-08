@@ -11,6 +11,6 @@ public interface DistrictRepository extends CrudRepository<District, Long> {
 
 	District findByName(String name);
 
-	Iterable<District> findByRegion(Region idRegion);
+	Iterable<District> findByRegion(Region region);
 
 }

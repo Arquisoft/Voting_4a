@@ -1,6 +1,8 @@
 package es.uniovi.asw.model;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * Candidate Created by ivan on 29/03/16.

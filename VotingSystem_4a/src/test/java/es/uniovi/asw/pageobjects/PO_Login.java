@@ -3,7 +3,9 @@ package es.uniovi.asw.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.boot.test.IntegrationTest;
 
+@IntegrationTest("server.port:0")
 public class PO_Login {
 
     public void rellenaFormulario(WebDriver driver, String pnombre, String ppass) {

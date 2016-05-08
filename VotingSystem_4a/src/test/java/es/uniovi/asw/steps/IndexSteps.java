@@ -22,8 +22,8 @@ import static org.junit.Assert.*;
 import es.uniovi.asw.Application;
 
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-@IntegrationTest
 @WebAppConfiguration
+@IntegrationTest("server.port:0")
 public class IndexSteps {
 
 	@Autowired

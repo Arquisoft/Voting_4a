@@ -26,7 +26,7 @@ public class InsertR {
 	public void createReferendum(String name, String description, String startTime, String endTime, String electionQuestion, String electionResp1, String electionResp2) throws ParametersException, ParseException {
 
 		if (name == null || description == null || startTime == null || endTime == null || electionQuestion == null || electionResp1 == null || electionResp2 == null) {
-			throw new ParametersException("os datos del referéndum no pueden ser nulos");
+			throw new ParametersException("Los datos del referéndum no pueden ser nulos");
 		}
 
 		ElectionCall electionCall = new ElectionCall(name, description);

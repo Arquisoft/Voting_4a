@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest("server.port:0")
 @Transactional
 public class DBUpdateTest {
 
@@ -153,7 +155,6 @@ public class DBUpdateTest {
 		votingPlace = new VotingPlace();
 
 		votingPlace.setName("Colegio La Ería");
-		votingPlace.setIdVotingPlace(1L);
 		insertP.insertVotingPlace(votingPlace);
 
 		assertTrue(votingPlace.getId() > 0);

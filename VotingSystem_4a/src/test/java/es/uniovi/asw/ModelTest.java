@@ -12,7 +12,9 @@ import es.uniovi.asw.model.ElectionCall;
 import es.uniovi.asw.model.Region;
 import es.uniovi.asw.model.Vote;
 import es.uniovi.asw.model.VotingPlace;
+import org.springframework.boot.test.IntegrationTest;
 
+@IntegrationTest("server.port:0")
 public class ModelTest {
 
 	ElectionCall ec;
@@ -49,10 +51,10 @@ public class ModelTest {
 
 	@Test
 	public void testVotingPlace() {
-		VotingPlace vp = new VotingPlace("Colegio 1", 1L);
-		vp.addVote(new Vote(true));
-		vp.addVote(new Vote(false));
-		vp.addVote(new Vote(true));
+		VotingPlace vp = new VotingPlace("Colegio 1");
+		vp.addVote(new Vote());
+		vp.addVote(new Vote());
+		vp.addVote(new Vote());
 
 		assertEquals(3, vp.getVotes().size());
 	}

@@ -33,12 +33,7 @@ public class RParameters implements ReadParameters {
 
 		for (ElectionCall electionCall : getParametersP.getElectionCalls()) {
 			for (Election election : electionCall.getElections()) {
-
-				Timestamp start = election.getElectionDateTime().getStartTime();
-				Timestamp end = election.getElectionDateTime().getEndTime();
-
-				if (System.currentTimeMillis() >= start.getTime() && System.currentTimeMillis() < end.getTime())
-					if (!rCheckVoter.hasVoted(idVoter, election.getId()))
+				if (election.isActiva() && !rCheckVoter.hasVoted(idVoter, election.getId()))
 						if (!electionCalls.contains(electionCall))
 							electionCalls.add(electionCall);
 			}

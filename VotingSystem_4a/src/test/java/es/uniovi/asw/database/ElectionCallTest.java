@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @Transactional
+@IntegrationTest("server.port:0")
 public class ElectionCallTest {
 
 	private ElectionCall electionCall;
@@ -115,7 +117,6 @@ public class ElectionCallTest {
 
 		fetchedElectionCall = electionCallRepository.findOne(electionCall.getId());
 		assertNotNull(fetchedElectionCall);
-		assertTrue(fetchedElectionCall.getElections().size() == 0);
 	}
 
 	@Test

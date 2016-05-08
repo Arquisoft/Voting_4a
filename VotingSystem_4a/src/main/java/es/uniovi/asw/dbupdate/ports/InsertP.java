@@ -125,7 +125,6 @@ public class InsertP implements Insert {
 		if (votingPlace == null) {
 			votingPlace = new VotingPlace();
 			votingPlace.setName("Colegio Electoral " + idVotingPlace);
-			votingPlace.setIdVotingPlace(idVotingPlace);
 			insertVotingPlace(votingPlace);
 		}
 

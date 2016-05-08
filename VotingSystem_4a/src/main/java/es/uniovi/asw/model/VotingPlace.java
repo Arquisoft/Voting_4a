@@ -20,9 +20,6 @@ public class VotingPlace implements Serializable {
 	@Column(nullable = false)
 	private String name;
 
-	@Column(nullable = false)
-	private Long idVotingPlace;
-
 	@OneToMany(mappedBy = "votingPlace", cascade = { CascadeType.ALL })
 	private Set<Voter> voters = new HashSet<>();
 
@@ -32,9 +29,8 @@ public class VotingPlace implements Serializable {
 	public VotingPlace() {
 	}
 
-	public VotingPlace(String name, Long idVotingPlace) {
+	public VotingPlace(String name) {
 		this.name = name;
-		this.idVotingPlace = idVotingPlace;
 	}
 
 	public void addVoter(Voter voter) {
@@ -73,14 +69,6 @@ public class VotingPlace implements Serializable {
 		return id;
 	}
 
-	public Long getIdVotingPlace() {
-		return idVotingPlace;
-	}
-
-	public void setIdVotingPlace(Long idVotingPlace) {
-		this.idVotingPlace = idVotingPlace;
-	}
-
 	public String getName() {
 		return name;
 
@@ -90,30 +78,4 @@ public class VotingPlace implements Serializable {
 		this.name = name;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof VotingPlace)) return false;
-
-		VotingPlace that = (VotingPlace) o;
-
-		return getName() != null ? getName().equals(that.getName()) : that.getName() == null && (getIdVotingPlace() != null ? getIdVotingPlace().equals(that.getIdVotingPlace()) : that.getIdVotingPlace() == null);
-
-	}
-
-	@Override
-	public int hashCode() {
-		int result = getName() != null ? getName().hashCode() : 0;
-		result = 31 * result + (getIdVotingPlace() != null ? getIdVotingPlace().hashCode() : 0);
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return "VotingPlace{" +
-				"idVotingPlace=" + idVotingPlace +
-				", name='" + name + '\'' +
-				", id=" + id +
-				'}';
-	}
 }

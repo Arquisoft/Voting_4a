@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface CandidatureRepository extends CrudRepository<Candidature, Long> {
 
-	Iterable<ReferendumOption> findByDistrict(District idDistrict);
+	Iterable<ReferendumOption> findByDistrict(District district);
 }

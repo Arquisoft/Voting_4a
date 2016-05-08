@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  * ReferendumOption Created by ivan on 2/04/16.
  */
 @Entity
-@DiscriminatorValue("ReferendumOption")
+@DiscriminatorValue("Referendum")
 public class ReferendumOption extends Candidature {
 
 	private static final long serialVersionUID = -1872697315315973327L;

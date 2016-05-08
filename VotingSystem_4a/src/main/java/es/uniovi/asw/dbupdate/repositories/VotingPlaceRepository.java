@@ -10,6 +10,4 @@ public interface VotingPlaceRepository extends CrudRepository<VotingPlace, Long>
 
 	VotingPlace findByName(String name);
 
-	VotingPlace findByIdVotingPlace(Long idVotingPlace);
-
 }

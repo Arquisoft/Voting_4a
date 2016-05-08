@@ -10,6 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "candidature_type", discriminatorType = DiscriminatorType.STRING, length = 255)
 public abstract class Candidature implements Serializable {
 
 	private static final long serialVersionUID = 3135434615125216327L;
@@ -23,6 +24,9 @@ public abstract class Candidature implements Serializable {
 
 	@OneToMany(mappedBy = "candidature", cascade = { CascadeType.ALL })
 	private Set<Vote> votes = new HashSet<>();
+
+	@Column(name = "candidature_type", insertable = false, updatable = false)
+	private String candidatureType;
 
 	public Candidature() {
 	}
@@ -47,6 +51,10 @@ public abstract class Candidature implements Serializable {
 		return district;
 	}
 
+	public String getCandidatureType() {
+		return candidatureType;
+	}
+
 	public void setDistrict(District district) {
 		this.district = district;
 	}
@@ -57,6 +65,10 @@ public abstract class Candidature implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Candidature{" + "id=" + id + ", district=" + district + '}';
+		return "Candidature{" +
+				"district=" + district +
+				", id=" + id +
+				", candidatureType='" + candidatureType + '\'' +
+				'}';
 	}
 }
