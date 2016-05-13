@@ -41,7 +41,7 @@ public class SeleniumTest {
 
 	/**
 	 * Metodo para comprobar que la pagina de incio se carga adecuadamente y su
-	 * boton actua de la misma manera.
+	 * boton actua de la misma manera
 	 * 
 	 * @throws Exception
 	 */
@@ -54,21 +54,9 @@ public class SeleniumTest {
 		// Hago click en el botón.
 		driver.findElement(By.id("j_idt4")).click();
 		esperar();
-		// Compruebo que se ha producido la navegación correctamente.
-		assertTrue(textoPresentePagina(driver, "Opciones disponibles"));
-	}
-
-	/**
-	 * Metodo para comprobar que la pagina principal se carga adecuadamente.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testResultadosReferendum() throws Exception {
-		driver.get(baseUrl + "referendum.xhtml");
+		driver.findElement(By.id("j_idt8:j_idt9:0:j_idt14")).click();
 		esperar();
-		// Compruebo que esto en la página que le indico.
-		assertTrue(textoPresentePagina(driver, "Opciones del referendum"));
+		// Compruebo que se ha producido la navegación correctamente.
 		assertTrue(textoPresentePagina(driver, "Opciones disponibles"));
 	}
 
