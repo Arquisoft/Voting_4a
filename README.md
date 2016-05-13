@@ -15,7 +15,9 @@ Voting System
 Estamos en Heroku
 
 [![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votecounting4a.herokuapp.com/)  VoteCounting
+
 [![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votingsystem4a.herokuapp.com/)  VotingSystem
+
 [![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://voters4a.herokuapp.com/)  Voters
 
 ##Chat
