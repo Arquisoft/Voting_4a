@@ -16,6 +16,21 @@
 			<from-outcome>verResultados</from-outcome>
 			<to-view-id>/referendum.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>verActivas</from-outcome>
+			<to-view-id>/votacionesActivas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/votacionesActivas.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>verDatos</from-outcome>
+			<to-view-id>/referendum.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>verActivas</from-outcome>
+			<to-view-id>/votacionesActivas.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 </faces-config>

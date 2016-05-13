@@ -47,6 +47,8 @@ public class BeanInstanciator implements Serializable {
 	private String pageView;
 	private VotacionManager VMaganer = VotacionManager.getVM();
 	private static final long TIEMPO_MS = 15000;
+	private List<Election> votaciones;
+	private int votacionElegida;
 
 	// Inyeccion de dependencia
 	@ManagedProperty(value = "#{results}")
@@ -71,17 +73,7 @@ public class BeanInstanciator implements Serializable {
 	public void init() {
 		System.out.println("BeanInstanciator - INIT");
 
-		List<Election> votaciones = votacionesService.getVoteInfo(true);
-
-		//////////////////////////////////////////////////////////////////////////////////////
-		// TODO: seleccionar la votación que escoja el usuario en la UI, no la primera activa
-		// TODO: comprobar que hay votaciones activas y si no las hay evitar que reviente
-		//////////////////////////////////////////////////////////////////////////////////////
-		Election vot = votaciones.get(0);
-		//////////////////////////////////////////////////////////////////////////////////////
-
-		VotacionManager.getVM().setOpciones(opcionesService.getOpciones(vot));
-		VotacionManager.getVM().setVotacion(vot);
+		setVotaciones(votacionesService.getVoteInfo(true));
 
 		beanResults = (BeanResults) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("beanResults"));
@@ -92,7 +84,6 @@ public class BeanInstanciator implements Serializable {
 			FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put(new String("beanResults"),
 					beanResults);
 		}
-		cargarTipoVotacion();
 	}
 
 	/**
@@ -100,6 +91,9 @@ public class BeanInstanciator implements Serializable {
 	 * instanciará el sistema de una forma u otra.
 	 */
 	private void cargarTipoVotacion() {
+		Election vot = votaciones.get(votacionElegida);
+		VotacionManager.getVM().setOpciones(opcionesService.getOpciones(vot));
+		VotacionManager.getVM().setVotacion(vot);
 		String candidatureType = VotacionManager.getVM().getOpciones().get(0).getCandidatureType();
 		// Indicamos que pagina tiene que ir
 		setPageView(candidatureType.toLowerCase() + ".xhtml");
@@ -139,6 +133,17 @@ public class BeanInstanciator implements Serializable {
 			}
 		};
 		timer.schedule(task, 0, TIEMPO_MS);
+	}
+	
+	public void elegirVotacion(Long id){
+		int i=0;
+		for (Election election : votaciones) {
+			if(election.getId()==id){
+				setVotacionElegida(i);
+				cargarTipoVotacion();
+			}
+			i++;
+		}
 	}
 
 	/**
@@ -184,5 +189,22 @@ public class BeanInstanciator implements Serializable {
 	 */
 	public VotacionManager getVMaganer() {
 		return VMaganer;
+	}
+
+	public List<Election> getVotaciones() {
+		this.votaciones = votacionesService.getVoteInfo(true);
+		return votaciones;
+	}
+
+	public void setVotaciones(List<Election> votaciones) {
+		this.votaciones = votaciones;
+	}
+
+	public int getVotacionElegida() {
+		return votacionElegida;
+	}
+
+	public void setVotacionElegida(int votacionElegida) {
+		this.votacionElegida = votacionElegida;
 	}
 }
