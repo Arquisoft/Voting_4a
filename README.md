@@ -12,6 +12,12 @@ Voting System
 
 [Project Site](http://arquisoft.github.io/Voting_4a/)
 
+Estamos en Heroku
+
+[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votecounting4a.herokuapp.com/)  VoteCounting
+[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votingsystem4a.herokuapp.com/)  VotingSystem
+[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://voters4a.herokuapp.com/)  Voters
+
 ##Chat
 
 [![Gitter](https://badges.gitter.im/Arquisoft/Voting_4a.svg)](https://gitter.im/Arquisoft/Voting_4a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -19,8 +25,6 @@ Voting System
 ##VoteCounting
 
 [VoteCounting Project Site](http://arquisoft.github.io/VoteCounting_4a/)
-
-[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://vote-counting-4a.herokuapp.com)
 
 
 VoteCounting es un proyecto realizado como práctica de entrega para la asignatura Arquitectura del Software de la Universidad de Oviedo.
