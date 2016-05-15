@@ -12,22 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.*;
 
 /**
- * LoginTest
- * Created by ivan on 14/05/16.
+ * Created by ivan on 15/05/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @IntegrationTest("server.port:0")
 @Transactional
-public class LoginTest {
-
-	@Autowired
-	private Login login;
+public class MD5Test {
 
 	@Test
-	public void auth() throws Exception {
-		assertNotNull(login.auth("junta@electoral.es", "admin"));
-		assertNotNull(login.auth("javi@servidor.com", "nhpLTLVN"));
+	public void getMD5() throws Exception {
+		assertEquals("4d186321c1a7f0f354b297e8914ab240", MD5.getMD5("hola"));
 	}
 
 }
