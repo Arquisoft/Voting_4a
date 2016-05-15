@@ -14,11 +14,11 @@ Sistema de votación y recuento electrónico desarrollado por el Grupo 4A de ASW
 
 Estamos en Heroku
 
-[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votecounting4a.herokuapp.com/)  VoteCounting
+[![VoteCounting Heroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votecounting4a.herokuapp.com/)  
 
-[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votingsystem4a.herokuapp.com/)  VotingSystem
+[![VotingSystem Heroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://votingsystem4a.herokuapp.com/)  
 
-[![ViewOnHeroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://voters4a.herokuapp.com/)  Voters
+[![Voters Heroku](https://img.shields.io/badge/View%20on-Heroku-ff69b4.svg)](http://voters4a.herokuapp.com/)  
 
 ##Chat
 
