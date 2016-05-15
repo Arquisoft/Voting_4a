@@ -26,7 +26,7 @@ Estamos en Heroku
 
 ##VotingSystem
 
-[VoteCounting Project Site](http://arquisoft.github.io/Voting_4a/)
+[VotingSystem Project Site](http://arquisoft.github.io/VotingSystem_4a/)
 
 VotingSystem es un proyecto realizado para la asignatura de Arquitectura del Software de la Universidad de Oviedo.
 
