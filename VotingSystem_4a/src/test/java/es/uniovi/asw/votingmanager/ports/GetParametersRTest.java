@@ -1,4 +1,4 @@
-package es.uniovi.asw.dbupdate.ports;
+package es.uniovi.asw.votingmanager.ports;
 
 import es.uniovi.asw.Application;
 import org.junit.Test;
@@ -9,36 +9,28 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 /**
- * GetVoterPTest
  * Created by ivan on 15/05/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @IntegrationTest("server.port:0")
 @Transactional
-public class GetVoterPTest {
+public class GetParametersRTest {
 
 	@Autowired
-	private GetVoterP getVoterP;
+	private GetParametersR getParametersR;
 
 	@Test
-	public void getVoter() throws Exception {
-		assertEquals("11111111A", getVoterP.getVoter(1L).getNif());
+	public void getReferendum() throws Exception {
+		assertNotNull(getParametersR.getReferendum(1L));
 	}
 
 	@Test
-	public void getVoterByNif() throws Exception {
-		assertEquals("11111111A", getVoterP.getVoter(1L).getNif());
-	}
-
-	@Test
-	public void getVoterByEmail() throws Exception {
-		assertEquals("perico@servidor.com", getVoterP.getVoterByEmail("perico@servidor.com").getEmail());
+	public void getReferendumOptions() throws Exception {
+		assertNotNull(getParametersR.getReferendumOptions(1L));
 	}
 
 }

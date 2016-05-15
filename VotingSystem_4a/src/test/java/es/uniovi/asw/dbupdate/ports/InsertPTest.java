@@ -103,6 +103,15 @@ public class InsertPTest {
 		voter.setPassword("AAAAAAAA");
 		voter = insertP.insertVoter(1L, voter);
 		assertNotNull(voter.getId());
+
+		voter = new Voter();
+		voter.setName("Juan2");
+		voter.setNif("11122244A");
+		voter.setEmail("email2@email.es");
+		voter.setIdVotingPlace(10L);
+		voter.setPassword("AAAAAAAB");
+		voter = insertP.insertVoter(1L, voter);
+		assertNotNull(voter.getId());
 	}
 
 }
